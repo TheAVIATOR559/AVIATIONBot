@@ -74,6 +74,9 @@
             this.ViewerBoxTimer = new System.Windows.Forms.Timer(this.components);
             this.LoyaltyPointTimer = new System.Windows.Forms.Timer(this.components);
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.socialMessageLabel = new System.Windows.Forms.Label();
+            this.socialMessageTextBox = new System.Windows.Forms.RichTextBox();
+            this.socialCommandCheckBox = new System.Windows.Forms.CheckBox();
             this.streamerCommandListCheckBox = new System.Windows.Forms.CheckBox();
             this.addBannedWord = new System.Windows.Forms.Button();
             this.settingsDescBox = new System.Windows.Forms.TextBox();
@@ -100,12 +103,13 @@
             this.CommandsTreeView = new System.Windows.Forms.TreeView();
             this.CommandsTextBox = new System.Windows.Forms.RichTextBox();
             this.tabSupport = new System.Windows.Forms.TabPage();
+            this.TOStextbox = new System.Windows.Forms.TextBox();
+            this.TOSlabel = new System.Windows.Forms.Label();
             this.feedbackBox = new System.Windows.Forms.RichTextBox();
             this.crashesTextBox = new System.Windows.Forms.RichTextBox();
             this.Crashes = new System.Windows.Forms.Label();
             this.Feedback = new System.Windows.Forms.Label();
-            this.TOSlabel = new System.Windows.Forms.Label();
-            this.TOStextbox = new System.Windows.Forms.TextBox();
+            this.socialMessageTimer = new System.Windows.Forms.Timer(this.components);
             this.tabSettings.SuspendLayout();
             this.tabChat.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -169,6 +173,9 @@
             // 
             // tabSettings
             // 
+            this.tabSettings.Controls.Add(this.socialMessageLabel);
+            this.tabSettings.Controls.Add(this.socialMessageTextBox);
+            this.tabSettings.Controls.Add(this.socialCommandCheckBox);
             this.tabSettings.Controls.Add(this.streamerCommandListCheckBox);
             this.tabSettings.Controls.Add(this.addBannedWord);
             this.tabSettings.Controls.Add(this.settingsDescBox);
@@ -192,13 +199,50 @@
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
             // 
+            // socialMessageLabel
+            // 
+            this.socialMessageLabel.AutoSize = true;
+            this.socialMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.socialMessageLabel.Location = new System.Drawing.Point(8, 176);
+            this.socialMessageLabel.Name = "socialMessageLabel";
+            this.socialMessageLabel.Size = new System.Drawing.Size(98, 13);
+            this.socialMessageLabel.TabIndex = 17;
+            this.socialMessageLabel.Text = "!social Message";
+            // 
+            // socialMessageTextBox
+            // 
+            this.socialMessageTextBox.Location = new System.Drawing.Point(11, 192);
+            this.socialMessageTextBox.Name = "socialMessageTextBox";
+            this.socialMessageTextBox.Size = new System.Drawing.Size(133, 49);
+            this.socialMessageTextBox.TabIndex = 16;
+            this.socialMessageTextBox.Text = "";
+            this.socialMessageTextBox.TextChanged += new System.EventHandler(this.socialMessageTextBox_TextChanged);
+            this.socialMessageTextBox.MouseEnter += new System.EventHandler(this.socialMessageTextBox_MouseEnter);
+            this.socialMessageTextBox.MouseLeave += new System.EventHandler(this.socialMessageTextBox_MouseLeave);
+            // 
+            // socialCommandCheckBox
+            // 
+            this.socialCommandCheckBox.AutoSize = true;
+            this.socialCommandCheckBox.Checked = true;
+            this.socialCommandCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.socialCommandCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.socialCommandCheckBox.Location = new System.Drawing.Point(267, 124);
+            this.socialCommandCheckBox.Name = "socialCommandCheckBox";
+            this.socialCommandCheckBox.Size = new System.Drawing.Size(156, 17);
+            this.socialCommandCheckBox.TabIndex = 15;
+            this.socialCommandCheckBox.Text = "!social Command Timer";
+            this.socialCommandCheckBox.UseVisualStyleBackColor = true;
+            this.socialCommandCheckBox.CheckedChanged += new System.EventHandler(this.socialCommandCheckBox_CheckedChanged);
+            this.socialCommandCheckBox.MouseEnter += new System.EventHandler(this.socialCommandCheckBox_MouseEnter);
+            this.socialCommandCheckBox.MouseLeave += new System.EventHandler(this.socialCommandCheckBox_MouseLeave);
+            // 
             // streamerCommandListCheckBox
             // 
             this.streamerCommandListCheckBox.AutoSize = true;
             this.streamerCommandListCheckBox.Checked = true;
             this.streamerCommandListCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.streamerCommandListCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.streamerCommandListCheckBox.Location = new System.Drawing.Point(11, 227);
+            this.streamerCommandListCheckBox.Location = new System.Drawing.Point(267, 147);
             this.streamerCommandListCheckBox.Name = "streamerCommandListCheckBox";
             this.streamerCommandListCheckBox.Size = new System.Drawing.Size(158, 17);
             this.streamerCommandListCheckBox.TabIndex = 14;
@@ -210,7 +254,7 @@
             // 
             // addBannedWord
             // 
-            this.addBannedWord.Location = new System.Drawing.Point(161, 46);
+            this.addBannedWord.Location = new System.Drawing.Point(268, 23);
             this.addBannedWord.Name = "addBannedWord";
             this.addBannedWord.Size = new System.Drawing.Size(110, 23);
             this.addBannedWord.TabIndex = 13;
@@ -220,11 +264,11 @@
             // 
             // settingsDescBox
             // 
-            this.settingsDescBox.Location = new System.Drawing.Point(278, 7);
+            this.settingsDescBox.Location = new System.Drawing.Point(431, 7);
             this.settingsDescBox.Multiline = true;
             this.settingsDescBox.Name = "settingsDescBox";
             this.settingsDescBox.ReadOnly = true;
-            this.settingsDescBox.Size = new System.Drawing.Size(440, 289);
+            this.settingsDescBox.Size = new System.Drawing.Size(287, 289);
             this.settingsDescBox.TabIndex = 12;
             // 
             // viewerCheckBox
@@ -233,7 +277,7 @@
             this.viewerCheckBox.Checked = true;
             this.viewerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.viewerCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewerCheckBox.Location = new System.Drawing.Point(11, 203);
+            this.viewerCheckBox.Location = new System.Drawing.Point(267, 101);
             this.viewerCheckBox.Name = "viewerCheckBox";
             this.viewerCheckBox.Size = new System.Drawing.Size(88, 17);
             this.viewerCheckBox.TabIndex = 11;
@@ -245,7 +289,7 @@
             // 
             // unbanWordButton
             // 
-            this.unbanWordButton.Location = new System.Drawing.Point(161, 203);
+            this.unbanWordButton.Location = new System.Drawing.Point(268, 49);
             this.unbanWordButton.Name = "unbanWordButton";
             this.unbanWordButton.Size = new System.Drawing.Size(111, 23);
             this.unbanWordButton.TabIndex = 10;
@@ -256,7 +300,7 @@
             // bannedWordsListBox
             // 
             this.bannedWordsListBox.FormattingEnabled = true;
-            this.bannedWordsListBox.Location = new System.Drawing.Point(161, 75);
+            this.bannedWordsListBox.Location = new System.Drawing.Point(151, 45);
             this.bannedWordsListBox.Name = "bannedWordsListBox";
             this.bannedWordsListBox.Size = new System.Drawing.Size(111, 121);
             this.bannedWordsListBox.TabIndex = 9;
@@ -269,7 +313,7 @@
             this.PointSystemCheckBox.Checked = true;
             this.PointSystemCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.PointSystemCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PointSystemCheckBox.Location = new System.Drawing.Point(11, 179);
+            this.PointSystemCheckBox.Location = new System.Drawing.Point(267, 78);
             this.PointSystemCheckBox.Name = "PointSystemCheckBox";
             this.PointSystemCheckBox.Size = new System.Drawing.Size(99, 17);
             this.PointSystemCheckBox.TabIndex = 8;
@@ -326,7 +370,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(157, 3);
+            this.label3.Location = new System.Drawing.Point(148, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 3;
@@ -334,7 +378,7 @@
             // 
             // bannedWordsBox
             // 
-            this.bannedWordsBox.Location = new System.Drawing.Point(160, 19);
+            this.bannedWordsBox.Location = new System.Drawing.Point(151, 19);
             this.bannedWordsBox.Name = "bannedWordsBox";
             this.bannedWordsBox.Size = new System.Drawing.Size(111, 20);
             this.bannedWordsBox.TabIndex = 2;
@@ -530,6 +574,29 @@
             this.tabSupport.Text = "Support";
             this.tabSupport.UseVisualStyleBackColor = true;
             // 
+            // TOStextbox
+            // 
+            this.TOStextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TOStextbox.Location = new System.Drawing.Point(370, 193);
+            this.TOStextbox.Multiline = true;
+            this.TOStextbox.Name = "TOStextbox";
+            this.TOStextbox.ReadOnly = true;
+            this.TOStextbox.Size = new System.Drawing.Size(348, 95);
+            this.TOStextbox.TabIndex = 6;
+            this.TOStextbox.Text = resources.GetString("TOStextbox.Text");
+            this.TOStextbox.Visible = false;
+            // 
+            // TOSlabel
+            // 
+            this.TOSlabel.AutoSize = true;
+            this.TOSlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TOSlabel.Location = new System.Drawing.Point(482, 174);
+            this.TOSlabel.Name = "TOSlabel";
+            this.TOSlabel.Size = new System.Drawing.Size(126, 16);
+            this.TOSlabel.TabIndex = 5;
+            this.TOSlabel.Text = "Terms of Service";
+            this.TOSlabel.Visible = false;
+            // 
             // feedbackBox
             // 
             this.feedbackBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -572,26 +639,10 @@
             this.Feedback.TabIndex = 1;
             this.Feedback.Text = "Feedback or Recommendations?";
             // 
-            // TOSlabel
+            // socialMessageTimer
             // 
-            this.TOSlabel.AutoSize = true;
-            this.TOSlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TOSlabel.Location = new System.Drawing.Point(482, 174);
-            this.TOSlabel.Name = "TOSlabel";
-            this.TOSlabel.Size = new System.Drawing.Size(126, 16);
-            this.TOSlabel.TabIndex = 5;
-            this.TOSlabel.Text = "Terms of Service";
-            // 
-            // TOStextbox
-            // 
-            this.TOStextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TOStextbox.Location = new System.Drawing.Point(370, 193);
-            this.TOStextbox.Multiline = true;
-            this.TOStextbox.Name = "TOStextbox";
-            this.TOStextbox.ReadOnly = true;
-            this.TOStextbox.Size = new System.Drawing.Size(348, 95);
-            this.TOStextbox.TabIndex = 6;
-            this.TOStextbox.Text = resources.GetString("TOStextbox.Text");
+            this.socialMessageTimer.Interval = 600000;
+            this.socialMessageTimer.Tick += new System.EventHandler(this.socialMessageTimer_Tick);
             // 
             // TheAVIATIONBot
             // 
@@ -658,6 +709,10 @@
         private System.Windows.Forms.CheckBox streamerCommandListCheckBox;
         private System.Windows.Forms.TextBox TOStextbox;
         private System.Windows.Forms.Label TOSlabel;
+        private System.Windows.Forms.Label socialMessageLabel;
+        private System.Windows.Forms.RichTextBox socialMessageTextBox;
+        private System.Windows.Forms.CheckBox socialCommandCheckBox;
+        private System.Windows.Forms.Timer socialMessageTimer;
     }
 }
 

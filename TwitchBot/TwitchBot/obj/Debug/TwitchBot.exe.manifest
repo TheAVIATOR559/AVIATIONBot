@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TwitchBot.exe" size="63400">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TwitchBot.exe" size="66472">
       <assemblyIdentity name="TwitchBot" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>bq/v7iE3P7Cdw45m65MKKkJwBLzPKyG1gTYv1x3gsgk=</dsig:DigestValue>
+        <dsig:DigestValue>WZcrsW9LMhQik/dOrhh4QNNBWAa23d0TcXKaO1fkiY0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -89,13 +89,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="TwitchBot.exe.config" size="1711">
+  <file name="TwitchBot.exe.config" size="2030">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ZpN0OoW9I9WMNZing072IOcyFu7K89KUFSm6j/2hSFA=</dsig:DigestValue>
+      <dsig:DigestValue>0Khx5Zej0yzVM/URu2ntJktD9H8+W/9ye8f23a44SXw=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

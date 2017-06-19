@@ -142,6 +142,9 @@ I, TheAVIATOR559, created this bot as a summer project as well as to teach mysel
 
 Worry not, please send an email to aviationbot@gmail.com with the word 'support' in all caps and your channel name in the subject line. We will never ask for your password or any personal information other than the name of your Twitch.tv channel; we ask for your channel name so that we can sit in on your stream and see if we managed to fix the problem. Describe the problem as best as you can and we will work on fixing the problem as quickly as possible.</value>
   </data>
+  <metadata name="socialMessageTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>475, 17</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>47</value>
   </metadata>

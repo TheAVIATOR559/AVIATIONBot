@@ -34,6 +34,7 @@ namespace TwitchBot
         public static bool firstStartUp = true;    //bool of whether to save user preferences or use defaults if first startup
         public static bool viewerListVisible = true;    //bool controlling visibility of viewer list
         public static bool streamerCommandList = true;  //bool controlling detail level of !commandlist
+        public static string socialMessage = "Your social connections like twitter, discord, youtube.";    //user's social connections. Used in !social command
 
         TwitchReadOnlyClient APIClient = new TwitchReadOnlyClient(TwitchClientID);
         TwitchROChat chatClient = new TwitchROChat(TwitchClientID);
@@ -80,6 +81,11 @@ namespace TwitchBot
                 commandListString = Properties.Settings.Default.customCommands;
                 viewerListVisible = Properties.Settings.Default.viewerList;
                 viewerCheckBox.Checked = Properties.Settings.Default.viewerList;
+                socialMessage = Properties.Settings.Default.socialMessage;
+                socialMessageTextBox.Text = Properties.Settings.Default.socialMessage;
+                socialMessageTimer.Enabled = Properties.Settings.Default.socialCommandTimer;
+                streamerCommandList = Properties.Settings.Default.streamerCommandList;
+                streamerCommandListCheckBox.Checked = Properties.Settings.Default.streamerCommandList;
             }
 
             //join channel and begin timers
@@ -90,6 +96,7 @@ namespace TwitchBot
             viewerListUpdate();
             ViewerBoxTimer.Start();
             ViewerBoxTimer_Tick(null, null);
+            socialMessageTimer.Start();
 
             //add words from list to client display
             foreach(string word in bannedWordsList)
@@ -127,6 +134,10 @@ namespace TwitchBot
             Properties.Settings.Default.firstStartUp = firstStartUp;
             Properties.Settings.Default.viewerList = viewerCheckBox.Checked;
             Properties.Settings.Default.viewerList = viewerListVisible;
+            Properties.Settings.Default.streamerCommandList = streamerCommandList;
+            Properties.Settings.Default.streamerCommandList = streamerCommandListCheckBox.Checked;
+            Properties.Settings.Default.socialCommandTimer = socialMessageTimer.Enabled;
+            Properties.Settings.Default.socialMessage = socialMessageTextBox.Text;
 
             //clear command string list, add commands to list, and save list
             commandListString.Clear();
@@ -453,6 +464,36 @@ namespace TwitchBot
             }
             #endregion
 
+            #region !social
+            else if (command == "social")    //!social  ::  Displays the user's social connections or the contents of the socialMessageBox
+            {
+                #region Command Spam Prevention
+                //prevents this command from being spammed
+                if (!commandSpamFilter)
+                {
+                    foreach (CommandSpamUser singleUser in commandSpamUsers)
+                    {
+                        if (username == singleUser.userName)
+                        {
+                            return;
+                        }
+                    }
+
+                    commandSpamFilter = true;
+
+                    #region Single User Command Spam Prevention
+                    CommandSpamUser user = new CommandSpamUser();
+                    user.userName = username;
+                    user.timeOfMessage = DateTime.Now;
+                    commandSpamUsers.Add(user);
+                    #endregion
+                    #endregion
+
+                    irc.sendChatMessage(socialMessage);
+                }
+            }
+            #endregion
+
             #region !commandlist
             else if (command == "commandlist")   //!commandlist  ::  Provides the user with a list of all available commands for the channel
             {
@@ -480,7 +521,7 @@ namespace TwitchBot
 
                     #region Streamer Commands
                     //if streamer commands are to be displayed in chat
-                    if(streamerCommandList)
+                    if (streamerCommandList)
                     {
                         string streamerCommands = "";
 
@@ -594,7 +635,7 @@ namespace TwitchBot
                     //splits the message into the word to ban, finds the word, removes it, and returns verification
                     string wordToUnban = message.Split(new string[] { " " }, StringSplitOptions.None)[1];
 
-                    if(bannedWordsList.Contains(wordToUnban))
+                    if (bannedWordsList.Contains(wordToUnban))
                     {
                         bannedWordsList.Remove(wordToUnban);
                         bannedWordsListBox.Items.Remove(wordToUnban);
@@ -1576,6 +1617,58 @@ namespace TwitchBot
             settingsDescBox.Clear();
         }
         #endregion
+
+        private void socialMessageTimer_Tick(object sender, EventArgs e)
+        {
+            irc.sendChatMessage(socialMessage);
+        }
+
+        private void socialCommandCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if(socialCommandCheckBox.Checked)
+            {
+                socialMessageTimer.Enabled = true;
+                //irc.sendChatMessage("Timer Enabled");
+            }
+            else if(!socialCommandCheckBox.Checked)
+            {
+                socialMessageTimer.Enabled = false;
+                //irc.sendChatMessage("Timer Disabled");
+            }
+        }
+
+        private void socialMessageTextBox_TextChanged(object sender, EventArgs e)
+        {
+            socialMessage = socialMessageTextBox.Text;
+        }
+
+        private void socialMessageTextBox_MouseEnter(object sender, EventArgs e)
+        {
+            settingsDescBox.Clear();
+
+            settingsDescBox.Text += "!social message" + Environment.NewLine + Environment.NewLine;
+
+            settingsDescBox.Text += "DESC";
+        }
+
+        private void socialMessageTextBox_MouseLeave(object sender, EventArgs e)
+        {
+            settingsDescBox.Clear();
+        }
+
+        private void socialCommandCheckBox_MouseEnter(object sender, EventArgs e)
+        {
+            settingsDescBox.Clear();
+
+            settingsDescBox.Text += "!social Command Timer" + Environment.NewLine + Environment.NewLine;
+
+            settingsDescBox.Text += "DESC";
+        }
+
+        private void socialCommandCheckBox_MouseLeave(object sender, EventArgs e)
+        {
+            settingsDescBox.Clear();
+        }
     }
 
     #region Classes

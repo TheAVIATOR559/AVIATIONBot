@@ -1,0 +1,4 @@
+descriptions for new settings
+	*!social command timer
+	*!social message
+	

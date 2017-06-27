@@ -41,8 +41,9 @@
             System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("!commandlist");
             System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("!banword");
             System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("!unbanword");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Custom Commands");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Commands", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("!social");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Custom Commands");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Commands", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3,
@@ -54,18 +55,21 @@
             treeNode9,
             treeNode10,
             treeNode11,
-            treeNode12});
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("!who");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("!schedule");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("!points");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("!commandlist");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Custom Commands");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Whisper Commands", new System.Windows.Forms.TreeNode[] {
-            treeNode14,
+            treeNode12,
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("!who");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("!schedule");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("!points");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("!commandlist");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("!stats");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Custom Commands");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Whisper Commands", new System.Windows.Forms.TreeNode[] {
             treeNode15,
             treeNode16,
             treeNode17,
-            treeNode18});
+            treeNode18,
+            treeNode19,
+            treeNode20});
             this.BotChatBox = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.CommandSpamTimer = new System.Windows.Forms.Timer(this.components);
@@ -74,6 +78,12 @@
             this.ViewerBoxTimer = new System.Windows.Forms.Timer(this.components);
             this.LoyaltyPointTimer = new System.Windows.Forms.Timer(this.components);
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.socialMessageUpdateButton = new System.Windows.Forms.Button();
+            this.scheduleMessageUpdateButton = new System.Windows.Forms.Button();
+            this.whoMessageUpdateButton = new System.Windows.Forms.Button();
+            this.channelNameUpdateButton = new System.Windows.Forms.Button();
+            this.rejoinChannelButton = new System.Windows.Forms.Button();
+            this.joinChannelButton = new System.Windows.Forms.Button();
             this.socialMessageLabel = new System.Windows.Forms.Label();
             this.socialMessageTextBox = new System.Windows.Forms.RichTextBox();
             this.socialCommandCheckBox = new System.Windows.Forms.CheckBox();
@@ -173,6 +183,12 @@
             // 
             // tabSettings
             // 
+            this.tabSettings.Controls.Add(this.socialMessageUpdateButton);
+            this.tabSettings.Controls.Add(this.scheduleMessageUpdateButton);
+            this.tabSettings.Controls.Add(this.whoMessageUpdateButton);
+            this.tabSettings.Controls.Add(this.channelNameUpdateButton);
+            this.tabSettings.Controls.Add(this.rejoinChannelButton);
+            this.tabSettings.Controls.Add(this.joinChannelButton);
             this.tabSettings.Controls.Add(this.socialMessageLabel);
             this.tabSettings.Controls.Add(this.socialMessageTextBox);
             this.tabSettings.Controls.Add(this.socialCommandCheckBox);
@@ -199,6 +215,67 @@
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
             // 
+            // socialMessageUpdateButton
+            // 
+            this.socialMessageUpdateButton.Location = new System.Drawing.Point(148, 192);
+            this.socialMessageUpdateButton.Name = "socialMessageUpdateButton";
+            this.socialMessageUpdateButton.Size = new System.Drawing.Size(53, 23);
+            this.socialMessageUpdateButton.TabIndex = 23;
+            this.socialMessageUpdateButton.Text = "Update";
+            this.socialMessageUpdateButton.UseVisualStyleBackColor = true;
+            this.socialMessageUpdateButton.Click += new System.EventHandler(this.socialMessageUpdateButton_Click);
+            // 
+            // scheduleMessageUpdateButton
+            // 
+            this.scheduleMessageUpdateButton.Location = new System.Drawing.Point(148, 127);
+            this.scheduleMessageUpdateButton.Name = "scheduleMessageUpdateButton";
+            this.scheduleMessageUpdateButton.Size = new System.Drawing.Size(53, 23);
+            this.scheduleMessageUpdateButton.TabIndex = 22;
+            this.scheduleMessageUpdateButton.Text = "Update";
+            this.scheduleMessageUpdateButton.UseVisualStyleBackColor = true;
+            this.scheduleMessageUpdateButton.Click += new System.EventHandler(this.scheduleMessageUpdateButton_Click);
+            // 
+            // whoMessageUpdateButton
+            // 
+            this.whoMessageUpdateButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.whoMessageUpdateButton.Location = new System.Drawing.Point(148, 58);
+            this.whoMessageUpdateButton.Name = "whoMessageUpdateButton";
+            this.whoMessageUpdateButton.Size = new System.Drawing.Size(53, 23);
+            this.whoMessageUpdateButton.TabIndex = 21;
+            this.whoMessageUpdateButton.Text = "Update";
+            this.whoMessageUpdateButton.UseVisualStyleBackColor = true;
+            this.whoMessageUpdateButton.Click += new System.EventHandler(this.whoMessageUpdateButton_Click);
+            // 
+            // channelNameUpdateButton
+            // 
+            this.channelNameUpdateButton.Location = new System.Drawing.Point(148, 18);
+            this.channelNameUpdateButton.Name = "channelNameUpdateButton";
+            this.channelNameUpdateButton.Size = new System.Drawing.Size(53, 22);
+            this.channelNameUpdateButton.TabIndex = 20;
+            this.channelNameUpdateButton.Text = "Update";
+            this.channelNameUpdateButton.UseVisualStyleBackColor = true;
+            this.channelNameUpdateButton.Click += new System.EventHandler(this.channelNameUpdateButton_Click);
+            // 
+            // rejoinChannelButton
+            // 
+            this.rejoinChannelButton.Location = new System.Drawing.Point(11, 273);
+            this.rejoinChannelButton.Name = "rejoinChannelButton";
+            this.rejoinChannelButton.Size = new System.Drawing.Size(75, 23);
+            this.rejoinChannelButton.TabIndex = 19;
+            this.rejoinChannelButton.Text = "Rejoin Channel";
+            this.rejoinChannelButton.UseVisualStyleBackColor = true;
+            this.rejoinChannelButton.Click += new System.EventHandler(this.rejoinChannelButton_Click);
+            // 
+            // joinChannelButton
+            // 
+            this.joinChannelButton.Location = new System.Drawing.Point(11, 247);
+            this.joinChannelButton.Name = "joinChannelButton";
+            this.joinChannelButton.Size = new System.Drawing.Size(75, 23);
+            this.joinChannelButton.TabIndex = 18;
+            this.joinChannelButton.Text = "Join Channel";
+            this.joinChannelButton.UseVisualStyleBackColor = true;
+            this.joinChannelButton.Click += new System.EventHandler(this.joinChannelButton_Click);
+            // 
             // socialMessageLabel
             // 
             this.socialMessageLabel.AutoSize = true;
@@ -216,7 +293,6 @@
             this.socialMessageTextBox.Size = new System.Drawing.Size(133, 49);
             this.socialMessageTextBox.TabIndex = 16;
             this.socialMessageTextBox.Text = "";
-            this.socialMessageTextBox.TextChanged += new System.EventHandler(this.socialMessageTextBox_TextChanged);
             this.socialMessageTextBox.MouseEnter += new System.EventHandler(this.socialMessageTextBox_MouseEnter);
             this.socialMessageTextBox.MouseLeave += new System.EventHandler(this.socialMessageTextBox_MouseLeave);
             // 
@@ -226,7 +302,7 @@
             this.socialCommandCheckBox.Checked = true;
             this.socialCommandCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.socialCommandCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.socialCommandCheckBox.Location = new System.Drawing.Point(267, 124);
+            this.socialCommandCheckBox.Location = new System.Drawing.Point(216, 219);
             this.socialCommandCheckBox.Name = "socialCommandCheckBox";
             this.socialCommandCheckBox.Size = new System.Drawing.Size(156, 17);
             this.socialCommandCheckBox.TabIndex = 15;
@@ -242,7 +318,7 @@
             this.streamerCommandListCheckBox.Checked = true;
             this.streamerCommandListCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.streamerCommandListCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.streamerCommandListCheckBox.Location = new System.Drawing.Point(267, 147);
+            this.streamerCommandListCheckBox.Location = new System.Drawing.Point(216, 242);
             this.streamerCommandListCheckBox.Name = "streamerCommandListCheckBox";
             this.streamerCommandListCheckBox.Size = new System.Drawing.Size(158, 17);
             this.streamerCommandListCheckBox.TabIndex = 14;
@@ -254,9 +330,9 @@
             // 
             // addBannedWord
             // 
-            this.addBannedWord.Location = new System.Drawing.Point(268, 23);
+            this.addBannedWord.Location = new System.Drawing.Point(331, 16);
             this.addBannedWord.Name = "addBannedWord";
-            this.addBannedWord.Size = new System.Drawing.Size(110, 23);
+            this.addBannedWord.Size = new System.Drawing.Size(65, 23);
             this.addBannedWord.TabIndex = 13;
             this.addBannedWord.Text = "Add Word";
             this.addBannedWord.UseVisualStyleBackColor = true;
@@ -264,11 +340,11 @@
             // 
             // settingsDescBox
             // 
-            this.settingsDescBox.Location = new System.Drawing.Point(431, 7);
+            this.settingsDescBox.Location = new System.Drawing.Point(443, -1);
             this.settingsDescBox.Multiline = true;
             this.settingsDescBox.Name = "settingsDescBox";
             this.settingsDescBox.ReadOnly = true;
-            this.settingsDescBox.Size = new System.Drawing.Size(287, 289);
+            this.settingsDescBox.Size = new System.Drawing.Size(283, 303);
             this.settingsDescBox.TabIndex = 12;
             // 
             // viewerCheckBox
@@ -277,7 +353,7 @@
             this.viewerCheckBox.Checked = true;
             this.viewerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.viewerCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewerCheckBox.Location = new System.Drawing.Point(267, 101);
+            this.viewerCheckBox.Location = new System.Drawing.Point(216, 196);
             this.viewerCheckBox.Name = "viewerCheckBox";
             this.viewerCheckBox.Size = new System.Drawing.Size(88, 17);
             this.viewerCheckBox.TabIndex = 11;
@@ -289,9 +365,9 @@
             // 
             // unbanWordButton
             // 
-            this.unbanWordButton.Location = new System.Drawing.Point(268, 49);
+            this.unbanWordButton.Location = new System.Drawing.Point(331, 42);
             this.unbanWordButton.Name = "unbanWordButton";
-            this.unbanWordButton.Size = new System.Drawing.Size(111, 23);
+            this.unbanWordButton.Size = new System.Drawing.Size(85, 23);
             this.unbanWordButton.TabIndex = 10;
             this.unbanWordButton.Text = "Remove Word";
             this.unbanWordButton.UseVisualStyleBackColor = true;
@@ -300,7 +376,7 @@
             // bannedWordsListBox
             // 
             this.bannedWordsListBox.FormattingEnabled = true;
-            this.bannedWordsListBox.Location = new System.Drawing.Point(151, 45);
+            this.bannedWordsListBox.Location = new System.Drawing.Point(216, 42);
             this.bannedWordsListBox.Name = "bannedWordsListBox";
             this.bannedWordsListBox.Size = new System.Drawing.Size(111, 121);
             this.bannedWordsListBox.TabIndex = 9;
@@ -313,7 +389,7 @@
             this.PointSystemCheckBox.Checked = true;
             this.PointSystemCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.PointSystemCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PointSystemCheckBox.Location = new System.Drawing.Point(267, 78);
+            this.PointSystemCheckBox.Location = new System.Drawing.Point(216, 173);
             this.PointSystemCheckBox.Name = "PointSystemCheckBox";
             this.PointSystemCheckBox.Size = new System.Drawing.Size(99, 17);
             this.PointSystemCheckBox.TabIndex = 8;
@@ -330,7 +406,6 @@
             this.scheduleMessageBox.Size = new System.Drawing.Size(133, 46);
             this.scheduleMessageBox.TabIndex = 7;
             this.scheduleMessageBox.Text = "";
-            this.scheduleMessageBox.TextChanged += new System.EventHandler(this.scheduleMessageBox_TextChanged);
             this.scheduleMessageBox.MouseEnter += new System.EventHandler(this.scheduleMessageBox_MouseEnter);
             this.scheduleMessageBox.MouseLeave += new System.EventHandler(this.scheduleMessageBox_MouseLeave);
             // 
@@ -352,7 +427,6 @@
             this.whoMessageBox.Size = new System.Drawing.Size(133, 50);
             this.whoMessageBox.TabIndex = 5;
             this.whoMessageBox.Text = "";
-            this.whoMessageBox.TextChanged += new System.EventHandler(this.whoMessageBox_TextChanged);
             this.whoMessageBox.MouseEnter += new System.EventHandler(this.whoMessageBox_MouseEnter);
             this.whoMessageBox.MouseLeave += new System.EventHandler(this.whoMessageBox_MouseLeave);
             // 
@@ -370,7 +444,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(148, 3);
+            this.label3.Location = new System.Drawing.Point(213, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 3;
@@ -378,7 +452,7 @@
             // 
             // bannedWordsBox
             // 
-            this.bannedWordsBox.Location = new System.Drawing.Point(151, 19);
+            this.bannedWordsBox.Location = new System.Drawing.Point(216, 19);
             this.bannedWordsBox.Name = "bannedWordsBox";
             this.bannedWordsBox.Size = new System.Drawing.Size(111, 20);
             this.bannedWordsBox.TabIndex = 2;
@@ -394,7 +468,6 @@
             this.channelNameBox.Size = new System.Drawing.Size(133, 20);
             this.channelNameBox.TabIndex = 1;
             this.channelNameBox.Text = "theaviationbot";
-            this.channelNameBox.TextChanged += new System.EventHandler(this.channelNameBox_TextChanged);
             this.channelNameBox.MouseEnter += new System.EventHandler(this.channelNameBox_MouseEnter);
             this.channelNameBox.MouseLeave += new System.EventHandler(this.channelNameBox_MouseLeave);
             // 
@@ -527,25 +600,29 @@
             treeNode10.Text = "!banword";
             treeNode11.Name = "!unbanword";
             treeNode11.Text = "!unbanword";
-            treeNode12.Name = "Custom Commands";
-            treeNode12.Text = "Custom Commands";
-            treeNode13.Name = "Commands";
-            treeNode13.Text = "Commands";
-            treeNode14.Name = "WHISPER!who";
-            treeNode14.Text = "!who";
-            treeNode15.Name = "WHISPER!schedule";
-            treeNode15.Text = "!schedule";
-            treeNode16.Name = "WHISPER!points";
-            treeNode16.Text = "!points";
-            treeNode17.Name = "WHISPER!commandlist";
-            treeNode17.Text = "!commandlist";
-            treeNode18.Name = "WHISPERCustom Commands";
-            treeNode18.Text = "Custom Commands";
-            treeNode19.Name = "Whisper Commands";
-            treeNode19.Text = "Whisper Commands";
+            treeNode12.Name = "!social";
+            treeNode12.Text = "!social";
+            treeNode13.Name = "Custom Commands";
+            treeNode13.Text = "Custom Commands";
+            treeNode14.Name = "Commands";
+            treeNode14.Text = "Commands";
+            treeNode15.Name = "WHISPER!who";
+            treeNode15.Text = "!who";
+            treeNode16.Name = "WHISPER!schedule";
+            treeNode16.Text = "!schedule";
+            treeNode17.Name = "WHISPER!points";
+            treeNode17.Text = "!points";
+            treeNode18.Name = "WHISPER!commandlist";
+            treeNode18.Text = "!commandlist";
+            treeNode19.Name = "!stats";
+            treeNode19.Text = "!stats";
+            treeNode20.Name = "WHISPERCustom Commands";
+            treeNode20.Text = "Custom Commands";
+            treeNode21.Name = "Whisper Commands";
+            treeNode21.Text = "Whisper Commands";
             this.CommandsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode19});
+            treeNode14,
+            treeNode21});
             this.CommandsTreeView.Size = new System.Drawing.Size(353, 288);
             this.CommandsTreeView.TabIndex = 2;
             this.CommandsTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.CommandsTreeView_NodeMouseClick);
@@ -713,6 +790,12 @@
         private System.Windows.Forms.RichTextBox socialMessageTextBox;
         private System.Windows.Forms.CheckBox socialCommandCheckBox;
         private System.Windows.Forms.Timer socialMessageTimer;
+        private System.Windows.Forms.Button socialMessageUpdateButton;
+        private System.Windows.Forms.Button scheduleMessageUpdateButton;
+        private System.Windows.Forms.Button whoMessageUpdateButton;
+        private System.Windows.Forms.Button channelNameUpdateButton;
+        private System.Windows.Forms.Button rejoinChannelButton;
+        private System.Windows.Forms.Button joinChannelButton;
     }
 }
 

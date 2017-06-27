@@ -35,6 +35,15 @@ namespace TwitchBot
         public static bool viewerListVisible = true;    //bool controlling visibility of viewer list
         public static bool streamerCommandList = true;  //bool controlling detail level of !commandlist
         public static string socialMessage = "Your social connections like twitter, discord, youtube.";    //user's social connections. Used in !social command
+        public static bool socialCommandTimer = true;
+        public static string adminName = "theaviator559";
+        public static int numberOfCustomCommands;
+        public static int numberOfPolls;
+        public static int numberOfGiveaways;
+        public static int numberOfQuotes;
+        public static int numberOfSounds;
+        public static int numberOfBannedWords;
+        public static int numberOfTimesOpened;
 
         TwitchReadOnlyClient APIClient = new TwitchReadOnlyClient(TwitchClientID);
         TwitchROChat chatClient = new TwitchROChat(TwitchClientID);
@@ -86,6 +95,8 @@ namespace TwitchBot
                 socialMessageTimer.Enabled = Properties.Settings.Default.socialCommandTimer;
                 streamerCommandList = Properties.Settings.Default.streamerCommandList;
                 streamerCommandListCheckBox.Checked = Properties.Settings.Default.streamerCommandList;
+                numberOfTimesOpened = Properties.Settings.Default.numberOfTimesOpened;
+                numberOfTimesOpened++;
             }
 
             //join channel and begin timers
@@ -138,6 +149,7 @@ namespace TwitchBot
             Properties.Settings.Default.streamerCommandList = streamerCommandListCheckBox.Checked;
             Properties.Settings.Default.socialCommandTimer = socialMessageTimer.Enabled;
             Properties.Settings.Default.socialMessage = socialMessageTextBox.Text;
+            Properties.Settings.Default.numberOfTimesOpened = numberOfTimesOpened;
 
             //clear command string list, add commands to list, and save list
             commandListString.Clear();
@@ -869,6 +881,65 @@ namespace TwitchBot
             }
             #endregion
 
+            #region !stats
+            else if(command == "stats")
+            {
+                if(username == adminName)
+                {
+                    numberOfCustomCommands = commandList.Count;
+                    numberOfBannedWords = bannedWordsList.Count;
+                    //numberOfQuotes = quoteList.Count;     //NOT IMPLEMENTED
+                    //numberOfSounds = soundList.Count;   //NOT IMPLEMENTED
+                    string socialTimerMessage;
+                    string viewerListVisibleMessage;
+                    string pointMessage;
+
+                    if (PointSystem)
+                    {
+                        pointMessage = "The Point System is enabled";
+                    }
+                    else
+                    {
+                        pointMessage = "The Point System is disabled";
+                    }
+
+                    if (viewerListVisible)
+                    {
+                        viewerListVisibleMessage = "The Viewer List is visible";
+                    }
+                    else
+                    {
+                        viewerListVisibleMessage = "The Viewer List is not visible";
+                    }
+
+                    if(socialCommandTimer)
+                    {
+                        socialTimerMessage = "The social command timer is enabled";
+                    }
+                    else
+                    {
+                        socialTimerMessage = "The social command timer is disabled";
+                    }
+
+                    string statsMessagePart1 = "TheAVIATIONBot stats for " + channelName + " MrDestructoid "
+                        + "Number of Custom Commands: " + numberOfCustomCommands + " MrDestructoid "
+                        + "Number of Polls: " + numberOfPolls + " SYSTEM NOT IMPLEMENTED YET" + " MrDestructoid "
+                        + "Number of Giveaways: " + numberOfGiveaways + " SYSTEM NOT IMPLEMENTED YET" + " MrDestructoid "
+                        + "Number of Quotes: " + numberOfQuotes + " SYSTEM NOT IMPLEMENTED YET" + " MrDestructoid "
+                        + "Number of Sounds" + numberOfSounds + " SYSTEM NOT IMPLEMENTED YET" + " MrDestructoid "
+                        + "Number of Banned Words: " + numberOfBannedWords + " MrDestructoid "
+                        + "Number of Time the Bot has been Used: " + numberOfTimesOpened + " MrDestructoid";
+
+                    string statsMessagePart2 = pointMessage + " MrDestructoid "
+                        + viewerListVisibleMessage + " MrDestructoid "
+                        + socialTimerMessage + " MrDestructoid";
+
+                    irc.sendWhisper(username, statsMessagePart1);
+                    irc.sendWhisper(username, statsMessagePart2);
+                }
+            }
+            #endregion
+
             #region Custom Commands
             else    //custom commands added by user
             {
@@ -984,6 +1055,7 @@ namespace TwitchBot
         {
             //create a new command, add it to the list, and provide verification
             commandList.Add(new Command(name, outputMessage, permLevel));
+
             irc.sendChatMessage("Command !" + name + " has successfully added.");
         }
 
@@ -1175,6 +1247,14 @@ namespace TwitchBot
             }
             #endregion
 
+            #region !social
+            if(selectedNodeName == "!social")
+            {
+                CommandsTextBox.Text += "This command gives your viewers a link to whatever social media you want them to follow you on." +
+                    Environment.NewLine + "This commands message can be changed under the settings tab.";
+            }
+            #endregion
+
             #region Custom Commands
             //if the selected node is 'Custom Commands', display its description
             if (selectedNodeName == "Custom Commands")
@@ -1251,25 +1331,6 @@ namespace TwitchBot
             #endregion
 
             #endregion
-        }
-
-        private void channelNameBox_TextChanged(object sender, EventArgs e)
-        {
-            //stores the edited channel name
-            //requires a restart to take effect
-            channelName = channelNameBox.Text;
-        }
-
-        private void whoMessageBox_TextChanged(object sender, EventArgs e)
-        {
-            //stores the updated who message
-            whoMessage = whoMessageBox.Text;
-        }
-
-        private void scheduleMessageBox_TextChanged(object sender, EventArgs e)
-        {
-            //stores the updated schedule message
-            scheduleMessage = scheduleMessageBox.Text;
         }
 
         private void PointSystemCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -1385,6 +1446,59 @@ namespace TwitchBot
             {
                 streamerCommandList = false;
             }
+        }
+
+        private void socialMessageTimer_Tick(object sender, EventArgs e)
+        {
+            irc.sendChatMessage(socialMessage);
+        }
+
+        private void socialCommandCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (socialCommandCheckBox.Checked)
+            {
+                socialMessageTimer.Enabled = true;
+                socialCommandTimer = true;
+            }
+            else if (!socialCommandCheckBox.Checked)
+            {
+                socialMessageTimer.Enabled = false;
+                socialCommandTimer = false;
+            }
+        }
+
+        private void channelNameUpdateButton_Click(object sender, EventArgs e)
+        {
+            channelName = channelNameBox.Text;
+        }
+
+        private void whoMessageUpdateButton_Click(object sender, EventArgs e)
+        {
+            whoMessage = whoMessageBox.Text;
+        }
+
+        private void scheduleMessageUpdateButton_Click(object sender, EventArgs e)
+        {
+            scheduleMessage = scheduleMessageBox.Text;
+        }
+
+        private void socialMessageUpdateButton_Click(object sender, EventArgs e)
+        {
+            socialMessage = socialMessageTextBox.Text;
+        }
+
+        private void joinChannelButton_Click(object sender, EventArgs e)
+        {
+            irc.joinRoom(channelName);
+
+            //irc.sendChatMessage("/me JOIN CONFIRMATION");
+        }
+
+        private void rejoinChannelButton_Click(object sender, EventArgs e)
+        {
+            irc.joinRoom(channelName);
+
+            //irc.sendChatMessage("/me REJOIN CONFIRMATION");
         }
         #endregion
 
@@ -1616,31 +1730,6 @@ namespace TwitchBot
         {
             settingsDescBox.Clear();
         }
-        #endregion
-
-        private void socialMessageTimer_Tick(object sender, EventArgs e)
-        {
-            irc.sendChatMessage(socialMessage);
-        }
-
-        private void socialCommandCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if(socialCommandCheckBox.Checked)
-            {
-                socialMessageTimer.Enabled = true;
-                //irc.sendChatMessage("Timer Enabled");
-            }
-            else if(!socialCommandCheckBox.Checked)
-            {
-                socialMessageTimer.Enabled = false;
-                //irc.sendChatMessage("Timer Disabled");
-            }
-        }
-
-        private void socialMessageTextBox_TextChanged(object sender, EventArgs e)
-        {
-            socialMessage = socialMessageTextBox.Text;
-        }
 
         private void socialMessageTextBox_MouseEnter(object sender, EventArgs e)
         {
@@ -1648,7 +1737,7 @@ namespace TwitchBot
 
             settingsDescBox.Text += "!social message" + Environment.NewLine + Environment.NewLine;
 
-            settingsDescBox.Text += "DESC";
+            settingsDescBox.Text += "This box allows you to enter a custom message for all of your social media accounts for viewers to follow you on.";
         }
 
         private void socialMessageTextBox_MouseLeave(object sender, EventArgs e)
@@ -1662,13 +1751,17 @@ namespace TwitchBot
 
             settingsDescBox.Text += "!social Command Timer" + Environment.NewLine + Environment.NewLine;
 
-            settingsDescBox.Text += "DESC";
+            settingsDescBox.Text += "This checkbox will enable or disable the timer that automatically runs the !social command every 10 minutes.";
         }
 
         private void socialCommandCheckBox_MouseLeave(object sender, EventArgs e)
         {
             settingsDescBox.Clear();
         }
+
+        #endregion
+
+
     }
 
     #region Classes

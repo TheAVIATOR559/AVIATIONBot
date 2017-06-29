@@ -42,8 +42,11 @@
             System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("!banword");
             System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("!unbanword");
             System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("!social");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Custom Commands");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Commands", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("!shoutout");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("!quote");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("!addquote");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Custom Commands");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Commands", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3,
@@ -56,20 +59,23 @@
             treeNode10,
             treeNode11,
             treeNode12,
-            treeNode13});
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("!who");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("!schedule");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("!points");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("!commandlist");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("!stats");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Custom Commands");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Whisper Commands", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14,
             treeNode15,
-            treeNode16,
-            treeNode17,
+            treeNode16});
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("!who");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("!schedule");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("!points");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("!commandlist");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("!stats");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Custom Commands");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Whisper Commands", new System.Windows.Forms.TreeNode[] {
             treeNode18,
             treeNode19,
-            treeNode20});
+            treeNode20,
+            treeNode21,
+            treeNode22,
+            treeNode23});
             this.BotChatBox = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.CommandSpamTimer = new System.Windows.Forms.Timer(this.components);
@@ -112,6 +118,10 @@
             this.tabCommands = new System.Windows.Forms.TabPage();
             this.CommandsTreeView = new System.Windows.Forms.TreeView();
             this.CommandsTextBox = new System.Windows.Forms.RichTextBox();
+            this.tabQuote = new System.Windows.Forms.TabPage();
+            this.quoteListBox = new System.Windows.Forms.ListBox();
+            this.quoteAddButton = new System.Windows.Forms.Button();
+            this.quoteAddBox = new System.Windows.Forms.TextBox();
             this.tabSupport = new System.Windows.Forms.TabPage();
             this.TOStextbox = new System.Windows.Forms.TextBox();
             this.TOSlabel = new System.Windows.Forms.Label();
@@ -120,11 +130,13 @@
             this.Crashes = new System.Windows.Forms.Label();
             this.Feedback = new System.Windows.Forms.Label();
             this.socialMessageTimer = new System.Windows.Forms.Timer(this.components);
+            this.tabPolls = new System.Windows.Forms.TabPage();
             this.tabSettings.SuspendLayout();
             this.tabChat.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabWelcome.SuspendLayout();
             this.tabCommands.SuspendLayout();
+            this.tabQuote.SuspendLayout();
             this.tabSupport.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -340,11 +352,11 @@
             // 
             // settingsDescBox
             // 
-            this.settingsDescBox.Location = new System.Drawing.Point(443, -1);
+            this.settingsDescBox.Location = new System.Drawing.Point(432, -1);
             this.settingsDescBox.Multiline = true;
             this.settingsDescBox.Name = "settingsDescBox";
             this.settingsDescBox.ReadOnly = true;
-            this.settingsDescBox.Size = new System.Drawing.Size(283, 303);
+            this.settingsDescBox.Size = new System.Drawing.Size(294, 303);
             this.settingsDescBox.TabIndex = 12;
             // 
             // viewerCheckBox
@@ -534,6 +546,8 @@
             this.tabControl1.Controls.Add(this.tabWelcome);
             this.tabControl1.Controls.Add(this.tabChat);
             this.tabControl1.Controls.Add(this.tabCommands);
+            this.tabControl1.Controls.Add(this.tabQuote);
+            this.tabControl1.Controls.Add(this.tabPolls);
             this.tabControl1.Controls.Add(this.tabSettings);
             this.tabControl1.Controls.Add(this.tabSupport);
             this.tabControl1.Location = new System.Drawing.Point(0, 1);
@@ -602,27 +616,33 @@
             treeNode11.Text = "!unbanword";
             treeNode12.Name = "!social";
             treeNode12.Text = "!social";
-            treeNode13.Name = "Custom Commands";
-            treeNode13.Text = "Custom Commands";
-            treeNode14.Name = "Commands";
-            treeNode14.Text = "Commands";
-            treeNode15.Name = "WHISPER!who";
-            treeNode15.Text = "!who";
-            treeNode16.Name = "WHISPER!schedule";
-            treeNode16.Text = "!schedule";
-            treeNode17.Name = "WHISPER!points";
-            treeNode17.Text = "!points";
-            treeNode18.Name = "WHISPER!commandlist";
-            treeNode18.Text = "!commandlist";
-            treeNode19.Name = "!stats";
-            treeNode19.Text = "!stats";
-            treeNode20.Name = "WHISPERCustom Commands";
-            treeNode20.Text = "Custom Commands";
-            treeNode21.Name = "Whisper Commands";
-            treeNode21.Text = "Whisper Commands";
+            treeNode13.Name = "!shoutout";
+            treeNode13.Text = "!shoutout";
+            treeNode14.Name = "!quote";
+            treeNode14.Text = "!quote";
+            treeNode15.Name = "!addquote";
+            treeNode15.Text = "!addquote";
+            treeNode16.Name = "Custom Commands";
+            treeNode16.Text = "Custom Commands";
+            treeNode17.Name = "Commands";
+            treeNode17.Text = "Commands";
+            treeNode18.Name = "WHISPER!who";
+            treeNode18.Text = "!who";
+            treeNode19.Name = "WHISPER!schedule";
+            treeNode19.Text = "!schedule";
+            treeNode20.Name = "WHISPER!points";
+            treeNode20.Text = "!points";
+            treeNode21.Name = "WHISPER!commandlist";
+            treeNode21.Text = "!commandlist";
+            treeNode22.Name = "!stats";
+            treeNode22.Text = "!stats";
+            treeNode23.Name = "WHISPERCustom Commands";
+            treeNode23.Text = "Custom Commands";
+            treeNode24.Name = "Whisper Commands";
+            treeNode24.Text = "Whisper Commands";
             this.CommandsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode14,
-            treeNode21});
+            treeNode17,
+            treeNode24});
             this.CommandsTreeView.Size = new System.Drawing.Size(353, 288);
             this.CommandsTreeView.TabIndex = 2;
             this.CommandsTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.CommandsTreeView_NodeMouseClick);
@@ -635,6 +655,43 @@
             this.CommandsTextBox.Size = new System.Drawing.Size(356, 288);
             this.CommandsTextBox.TabIndex = 1;
             this.CommandsTextBox.Text = "A brief description of the selected command will be displayed here.";
+            // 
+            // tabQuote
+            // 
+            this.tabQuote.Controls.Add(this.quoteListBox);
+            this.tabQuote.Controls.Add(this.quoteAddButton);
+            this.tabQuote.Controls.Add(this.quoteAddBox);
+            this.tabQuote.Location = new System.Drawing.Point(4, 22);
+            this.tabQuote.Name = "tabQuote";
+            this.tabQuote.Size = new System.Drawing.Size(726, 302);
+            this.tabQuote.TabIndex = 6;
+            this.tabQuote.Text = "Quotes";
+            this.tabQuote.UseVisualStyleBackColor = true;
+            // 
+            // quoteListBox
+            // 
+            this.quoteListBox.FormattingEnabled = true;
+            this.quoteListBox.Location = new System.Drawing.Point(0, 0);
+            this.quoteListBox.Name = "quoteListBox";
+            this.quoteListBox.Size = new System.Drawing.Size(726, 277);
+            this.quoteListBox.TabIndex = 4;
+            // 
+            // quoteAddButton
+            // 
+            this.quoteAddButton.Location = new System.Drawing.Point(8, 279);
+            this.quoteAddButton.Name = "quoteAddButton";
+            this.quoteAddButton.Size = new System.Drawing.Size(96, 21);
+            this.quoteAddButton.TabIndex = 2;
+            this.quoteAddButton.Text = "Add Quote";
+            this.quoteAddButton.UseVisualStyleBackColor = true;
+            this.quoteAddButton.Click += new System.EventHandler(this.quoteAddButton_Click);
+            // 
+            // quoteAddBox
+            // 
+            this.quoteAddBox.Location = new System.Drawing.Point(110, 279);
+            this.quoteAddBox.Name = "quoteAddBox";
+            this.quoteAddBox.Size = new System.Drawing.Size(613, 20);
+            this.quoteAddBox.TabIndex = 1;
             // 
             // tabSupport
             // 
@@ -721,6 +778,15 @@
             this.socialMessageTimer.Interval = 600000;
             this.socialMessageTimer.Tick += new System.EventHandler(this.socialMessageTimer_Tick);
             // 
+            // tabPolls
+            // 
+            this.tabPolls.Location = new System.Drawing.Point(4, 22);
+            this.tabPolls.Name = "tabPolls";
+            this.tabPolls.Size = new System.Drawing.Size(726, 302);
+            this.tabPolls.TabIndex = 7;
+            this.tabPolls.Text = "Polls";
+            this.tabPolls.UseVisualStyleBackColor = true;
+            // 
             // TheAVIATIONBot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -739,6 +805,8 @@
             this.tabWelcome.ResumeLayout(false);
             this.tabWelcome.PerformLayout();
             this.tabCommands.ResumeLayout(false);
+            this.tabQuote.ResumeLayout(false);
+            this.tabQuote.PerformLayout();
             this.tabSupport.ResumeLayout(false);
             this.tabSupport.PerformLayout();
             this.ResumeLayout(false);
@@ -796,6 +864,11 @@
         private System.Windows.Forms.Button channelNameUpdateButton;
         private System.Windows.Forms.Button rejoinChannelButton;
         private System.Windows.Forms.Button joinChannelButton;
+        private System.Windows.Forms.TabPage tabQuote;
+        private System.Windows.Forms.ListBox quoteListBox;
+        private System.Windows.Forms.Button quoteAddButton;
+        private System.Windows.Forms.TextBox quoteAddBox;
+        private System.Windows.Forms.TabPage tabPolls;
     }
 }
 

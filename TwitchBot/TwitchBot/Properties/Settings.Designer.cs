@@ -164,5 +164,29 @@ namespace TwitchBot.Properties {
                 this["numberOfTimesOpened"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int numberOfPolls {
+            get {
+                return ((int)(this["numberOfPolls"]));
+            }
+            set {
+                this["numberOfPolls"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int numberofGiveaways {
+            get {
+                return ((int)(this["numberofGiveaways"]));
+            }
+            set {
+                this["numberofGiveaways"] = value;
+            }
+        }
     }
 }

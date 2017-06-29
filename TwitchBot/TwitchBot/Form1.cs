@@ -44,6 +44,7 @@ namespace TwitchBot
         public static int numberOfSounds;
         public static int numberOfBannedWords;
         public static int numberOfTimesOpened;
+        public static Dictionary<int, string> quotesDict = new Dictionary<int, string>();
 
         TwitchReadOnlyClient APIClient = new TwitchReadOnlyClient(TwitchClientID);
         TwitchROChat chatClient = new TwitchROChat(TwitchClientID);
@@ -95,6 +96,8 @@ namespace TwitchBot
                 socialMessageTimer.Enabled = Properties.Settings.Default.socialCommandTimer;
                 streamerCommandList = Properties.Settings.Default.streamerCommandList;
                 streamerCommandListCheckBox.Checked = Properties.Settings.Default.streamerCommandList;
+                numberOfPolls = Properties.Settings.Default.numberOfPolls;
+                numberOfGiveaways = Properties.Settings.Default.numberofGiveaways;
                 numberOfTimesOpened = Properties.Settings.Default.numberOfTimesOpened;
                 numberOfTimesOpened++;
             }
@@ -119,6 +122,15 @@ namespace TwitchBot
             foreach(string commandString in commandListString)
             {
                 CommandLoading(commandString);
+            }
+
+            quotesDict.Add(quotesDict.Count + 1, "TEST");
+            quotesDict.Add(quotesDict.Count + 1, "TEST2");
+            quotesDict.Add(quotesDict.Count + 1, "TEST3");
+            //loads quotes into the quoteListBox
+            foreach (KeyValuePair<int, string> quote in quotesDict)
+            {
+                quoteListBox.Items.Add(quote.Key + " -- " + quote.Value);
             }
 
             //comfirmation of successfully joining channel
@@ -149,6 +161,8 @@ namespace TwitchBot
             Properties.Settings.Default.streamerCommandList = streamerCommandListCheckBox.Checked;
             Properties.Settings.Default.socialCommandTimer = socialMessageTimer.Enabled;
             Properties.Settings.Default.socialMessage = socialMessageTextBox.Text;
+            Properties.Settings.Default.numberOfPolls = numberOfPolls;
+            Properties.Settings.Default.numberofGiveaways = numberOfGiveaways;
             Properties.Settings.Default.numberOfTimesOpened = numberOfTimesOpened;
 
             //clear command string list, add commands to list, and save list
@@ -663,6 +677,42 @@ namespace TwitchBot
             }
             #endregion
 
+            #region !shoutout
+            else if(command == "shoutout")
+            {
+                if(modList.Contains(username))
+                {
+                    string person = message.Split(new string[] { " " }, StringSplitOptions.None)[1];
+
+                    irc.sendChatMessage(person + " is an amazing person. Go follow them at twitch.tv/" + person);
+                }
+            }
+            #endregion
+
+            #region !quote
+            else if(command == "quote")
+            {
+                Random rand = new Random();
+
+                string quote = quotesDict[rand.Next(1, quotesDict.Count)];
+                irc.sendChatMessage(quote);
+            }
+            #endregion
+
+            #region !addquote
+            else if(command == "addquote")
+            {
+                if(modList.Contains(username))
+                {
+                    string quoteToAdd = message.Split(new string[] { " " }, StringSplitOptions.None)[1];
+
+                    quotesDict.Add(quotesDict.Count + 1, quoteToAdd);
+                    quoteListBox.Items.Add(quotesDict.Count + " -- " + quoteToAdd);
+                    irc.sendChatMessage("Quote #" + quotesDict.Count + " has been added.");
+                }
+            }
+            #endregion
+
             #region Custom Commands
             else    //custom commands added by user
             {
@@ -888,7 +938,7 @@ namespace TwitchBot
                 {
                     numberOfCustomCommands = commandList.Count;
                     numberOfBannedWords = bannedWordsList.Count;
-                    //numberOfQuotes = quoteList.Count;     //NOT IMPLEMENTED
+                    numberOfQuotes = quotesDict.Count;     
                     //numberOfSounds = soundList.Count;   //NOT IMPLEMENTED
                     string socialTimerMessage;
                     string viewerListVisibleMessage;
@@ -925,7 +975,7 @@ namespace TwitchBot
                         + "Number of Custom Commands: " + numberOfCustomCommands + " MrDestructoid "
                         + "Number of Polls: " + numberOfPolls + " SYSTEM NOT IMPLEMENTED YET" + " MrDestructoid "
                         + "Number of Giveaways: " + numberOfGiveaways + " SYSTEM NOT IMPLEMENTED YET" + " MrDestructoid "
-                        + "Number of Quotes: " + numberOfQuotes + " SYSTEM NOT IMPLEMENTED YET" + " MrDestructoid "
+                        + "Number of Quotes: " + numberOfQuotes + " MrDestructoid "
                         + "Number of Sounds" + numberOfSounds + " SYSTEM NOT IMPLEMENTED YET" + " MrDestructoid "
                         + "Number of Banned Words: " + numberOfBannedWords + " MrDestructoid "
                         + "Number of Time the Bot has been Used: " + numberOfTimesOpened + " MrDestructoid";
@@ -1500,6 +1550,17 @@ namespace TwitchBot
 
             //irc.sendChatMessage("/me REJOIN CONFIRMATION");
         }
+
+        private void quoteAddButton_Click(object sender, EventArgs e)
+        {
+            string quoteToAddValue = quoteAddBox.Text;
+            int quotetoAddKey = quotesDict.Count + 1;
+
+            quotesDict.Add(quotetoAddKey, quoteToAddValue);
+
+            quoteListBox.Items.Add(quotetoAddKey + " -- " + quoteToAddValue);
+            quoteAddBox.Clear();
+        }
         #endregion
 
         #region Bot Chat Handling
@@ -1759,9 +1820,8 @@ namespace TwitchBot
             settingsDescBox.Clear();
         }
 
+
         #endregion
-
-
     }
 
     #region Classes

@@ -1,0 +1,16 @@
+<Settings>
+  <Channel_Name>theaviator559</Channel_Name>
+  <Who_Message>A brief description about yourself and your channel.</Who_Message>
+  <Schedule_Message>Your streaming schedule.</Schedule_Message>
+  <Banned_Words />
+  <Commands />
+  <Social_Message>Your social connections like twitter, discord, youtube.</Social_Message>
+  <Number_of_Polls>0</Number_of_Polls>
+  <Number_of_Giveaways>0</Number_of_Giveaways>
+  <Number_of_Times_Opened>1</Number_of_Times_Opened>
+  <Point_System>true</Point_System>
+  <Viewer_List_Visible>true</Viewer_List_Visible>
+  <Streamer_Command_List>true</Streamer_Command_List>
+  <Social_Message_Timer>true</Social_Message_Timer>
+  <Quotes />
+</Settings>

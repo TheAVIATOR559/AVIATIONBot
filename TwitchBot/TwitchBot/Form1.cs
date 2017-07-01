@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using System.Runtime.InteropServices;
 using System.Media;
 using System.Diagnostics;
+using System.Xml;
 using TwitchCSharp.Clients;
 using TwitchCSharp.Models;
 
@@ -29,9 +30,8 @@ namespace TwitchBot
         public static string channelName = "theaviationbot";    //channel the bot will connect to. Default to self for safe initialization
         public static string whoMessage = "A brief description about yourself and your channel.";   //message about the user/channel. Used in the !who command
         public static string scheduleMessage = "Your streaming schedule.";  //user's streaming schedule. Used in the !schedule command
-        public static List<string> bannedWordsList = new List<string> { "pauper consilio"};     //list of words user wants banned from chat. 'Pauper consilio' added for safe initialization
+        public static List<string> bannedWordsList = new List<string>();     //list of words user wants banned from chat. 'Pauper consilio' added for safe initialization
         public static bool PointSystem = true;    //bool controlling the function of the Point System. User can enable/disable at runtime.
-        public static bool firstStartUp = true;    //bool of whether to save user preferences or use defaults if first startup
         public static bool viewerListVisible = true;    //bool controlling visibility of viewer list
         public static bool streamerCommandList = true;  //bool controlling detail level of !commandlist
         public static string socialMessage = "Your social connections like twitter, discord, youtube.";    //user's social connections. Used in !social command
@@ -74,36 +74,113 @@ namespace TwitchBot
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            firstStartUp = Properties.Settings.Default.firstStartUp;
-
-            //if user has used the bot before, load settings
-            if(!firstStartUp)
+            #region Loads User Settings via XML
+            XmlDocument settings = new XmlDocument();
+            try
             {
-                channelNameBox.Text = Properties.Settings.Default.channelName;
-                channelName = Properties.Settings.Default.channelName;
-                whoMessageBox.Text = Properties.Settings.Default.whoMessage;
-                whoMessage = Properties.Settings.Default.whoMessage;
-                scheduleMessageBox.Text = Properties.Settings.Default.scheduleMessage;
-                scheduleMessage = Properties.Settings.Default.scheduleMessage;
-                PointSystemCheckBox.Checked = Properties.Settings.Default.PointSystem;
-                PointSystem = Properties.Settings.Default.PointSystem;
-                bannedWordsList = Properties.Settings.Default.bannedWords;
-                commandListString = Properties.Settings.Default.customCommands;
-                viewerListVisible = Properties.Settings.Default.viewerList;
-                viewerCheckBox.Checked = Properties.Settings.Default.viewerList;
-                socialMessage = Properties.Settings.Default.socialMessage;
-                socialMessageTextBox.Text = Properties.Settings.Default.socialMessage;
-                socialMessageTimer.Enabled = Properties.Settings.Default.socialCommandTimer;
-                streamerCommandList = Properties.Settings.Default.streamerCommandList;
-                streamerCommandListCheckBox.Checked = Properties.Settings.Default.streamerCommandList;
-                numberOfPolls = Properties.Settings.Default.numberOfPolls;
-                numberOfGiveaways = Properties.Settings.Default.numberofGiveaways;
-                numberOfTimesOpened = Properties.Settings.Default.numberOfTimesOpened;
-                numberOfTimesOpened++;
+                settings.Load(@"D:\\GitHub\\AVIATIONBot\\settings.xml");
+                channelNameBox.Text = settings.SelectSingleNode("Settings/Channel_Name/text()").InnerText.Trim();
+                channelName = settings.SelectSingleNode("Settings/Channel_Name/text()").InnerText.Trim();
+                whoMessageBox.Text = settings.SelectSingleNode("Settings/Who_Message/text()").InnerText.Trim();
+                whoMessage = settings.SelectSingleNode("Settings/Who_Message/text()").InnerText.Trim();
+                scheduleMessageBox.Text = settings.SelectSingleNode("Settings/Schedule_Message/text()").InnerText.Trim();
+                scheduleMessage = settings.SelectSingleNode("Settings/Schedule_Message/text()").InnerText.Trim();
+                PointSystemCheckBox.Checked = XmlConvert.ToBoolean(settings.SelectSingleNode("Settings/Point_System/text()").InnerText.Trim());
+                PointSystem = XmlConvert.ToBoolean(settings.SelectSingleNode("Settings/Point_System/text()").InnerText.Trim());
+                viewerListVisible = XmlConvert.ToBoolean(settings.SelectSingleNode("Settings/Viewer_List_Visible/text()").InnerText.Trim());
+                viewerCheckBox.Checked = XmlConvert.ToBoolean(settings.SelectSingleNode("Settings/Viewer_List_Visible/text()").InnerText.Trim());
+                socialMessage = settings.SelectSingleNode("Settings/Social_Message/text()").InnerText.Trim();
+                socialMessageTextBox.Text = settings.SelectSingleNode("Settings/Social_Message/text()").InnerText.Trim();
+                socialMessageTimer.Enabled = XmlConvert.ToBoolean(settings.SelectSingleNode("Settings/Social_Message_Timer/text()").InnerText.Trim());
+                streamerCommandList = XmlConvert.ToBoolean(settings.SelectSingleNode("Settings/Streamer_Command_List/text()").InnerText.Trim());
+                streamerCommandListCheckBox.Checked = XmlConvert.ToBoolean(settings.SelectSingleNode("Settings/Streamer_Command_List/text()").InnerText.Trim());
+                numberOfPolls = XmlConvert.ToInt32(settings.SelectSingleNode("Settings/Number_of_Polls/text()").InnerText.Trim());
+                numberOfGiveaways = XmlConvert.ToInt32(settings.SelectSingleNode("Settings/Number_of_Giveaways/text()").InnerText.Trim());
+                numberOfTimesOpened = XmlConvert.ToInt32(settings.SelectSingleNode("Settings/Number_of_Times_Opened/text()").InnerText.Trim());
+
+                XmlNodeList bannedWords = settings.SelectNodes("Settings/Banned_Words/Word");
+                foreach (XmlNode word in bannedWords)
+                {
+                    bannedWordsList.Add(word.InnerText.Trim());
+                }
+
+                XmlNodeList commands = settings.SelectNodes("Settings/Commands/Command");
+                foreach (XmlNode comm in commands)
+                {
+                    CommandLoading(comm.InnerText.Trim());
+                }
+
+                XmlNodeList quotes = settings.SelectNodes("Settings/Quotes/Quote");
+                foreach(XmlNode quote in quotes)
+                {
+                    int quoteKey = XmlConvert.ToInt32(quote.Attributes["Number"].Value);
+                    quotesDict.Add(quoteKey, quote.InnerText.Trim());
+                }
             }
+            catch
+            {
+                XmlNode rootNode = settings.CreateElement("Settings");
+                settings.AppendChild(rootNode);
+
+                XmlNode channelNameNode = settings.CreateElement("Channel_Name");
+                channelNameNode.InnerText = channelName;
+                rootNode.AppendChild(channelNameNode);
+
+                XmlNode whoMessageNode = settings.CreateElement("Who_Message");
+                whoMessageNode.InnerText = whoMessage;
+                rootNode.AppendChild(whoMessageNode);
+
+                XmlNode scheduleMessageNode = settings.CreateElement("Schedule_Message");
+                scheduleMessageNode.InnerText = scheduleMessage;
+                rootNode.AppendChild(scheduleMessageNode);
+
+                XmlNode bannedWordsNode = settings.CreateElement("Banned_Words");
+                rootNode.AppendChild(bannedWordsNode);
+
+                XmlNode commandsNode = settings.CreateElement("Commands");
+                rootNode.AppendChild(commandsNode);
+
+                XmlNode socialMessageNode = settings.CreateElement("Social_Message");
+                socialMessageNode.InnerText = socialMessage;
+                rootNode.AppendChild(socialMessageNode);
+
+                XmlNode numberofPollsNode = settings.CreateElement("Number_of_Polls");
+                numberofPollsNode.InnerText = numberOfPolls.ToString();
+                rootNode.AppendChild(numberofPollsNode);
+
+                XmlNode numberofGiveawaysNode = settings.CreateElement("Number_of_Giveaways");
+                numberofGiveawaysNode.InnerText = numberOfGiveaways.ToString();
+                rootNode.AppendChild(numberofGiveawaysNode);
+
+                XmlNode numberofTimesOpenedNode = settings.CreateElement("Number_of_Times_Opened");
+                numberofTimesOpenedNode.InnerText = numberOfTimesOpened.ToString();
+                rootNode.AppendChild(numberofTimesOpenedNode);
+
+                XmlNode pointSystemNode = settings.CreateElement("Point_System");
+                pointSystemNode.InnerText = PointSystem.ToString().ToLower();
+                rootNode.AppendChild(pointSystemNode);
+
+                XmlNode viewerListVisibleNode = settings.CreateElement("Viewer_List_Visible");
+                viewerListVisibleNode.InnerText = viewerListVisible.ToString().ToLower();
+                rootNode.AppendChild(viewerListVisibleNode);
+
+                XmlNode streamerCommandListNode = settings.CreateElement("Streamer_Command_List");
+                streamerCommandListNode.InnerText = streamerCommandList.ToString().ToLower();
+                rootNode.AppendChild(streamerCommandListNode);
+
+                XmlNode socialMessageTimerNode = settings.CreateElement("Social_Message_Timer");
+                socialMessageTimerNode.InnerText = socialCommandTimer.ToString().ToLower();
+                rootNode.AppendChild(socialMessageTimerNode);
+
+                XmlNode quotesNode = settings.CreateElement("Quotes");
+                rootNode.AppendChild(quotesNode);
+
+                settings.Save(@"D:\\GitHub\\AVIATIONBot\\settings.xml");
+            }
+            #endregion
 
             //join channel and begin timers
-            irc.joinRoom(channelNameBox.Text);
+            irc.joinRoom(channelName);
             chatThread = new Thread(getMessage);
             chatThread.Start();
             CommandSpamTimer.Start();
@@ -113,20 +190,11 @@ namespace TwitchBot
             socialMessageTimer.Start();
 
             //add words from list to client display
-            foreach(string word in bannedWordsList)
+            foreach (string word in bannedWordsList)
             {
                 bannedWordsListBox.Items.Add(word);
             }
 
-            //convert command strings into commands
-            foreach(string commandString in commandListString)
-            {
-                CommandLoading(commandString);
-            }
-
-            quotesDict.Add(quotesDict.Count + 1, "TEST");
-            quotesDict.Add(quotesDict.Count + 1, "TEST2");
-            quotesDict.Add(quotesDict.Count + 1, "TEST3");
             //loads quotes into the quoteListBox
             foreach (KeyValuePair<int, string> quote in quotesDict)
             {
@@ -134,6 +202,7 @@ namespace TwitchBot
             }
 
             //comfirmation of successfully joining channel
+            numberOfTimesOpened++;
             irc.sendChatMessage("/me has joined the channel.");
         }
 
@@ -142,38 +211,55 @@ namespace TwitchBot
             //notification of leaving channel
             irc.sendChatMessage("/me has left the channel.");
 
-            if(firstStartUp)
+            #region Saving user Settings via XML
+            XmlDocument settingsDoc = new XmlDocument();
+            settingsDoc.Load(@"D:\\GitHub\\AVIATIONBot\\settings.xml");
+
+            settingsDoc.SelectSingleNode("Settings/Channel_Name/text()").InnerText = channelName;
+            settingsDoc.SelectSingleNode("Settings/Who_Message/text()").InnerText = whoMessage;
+            settingsDoc.SelectSingleNode("Settings/Schedule_Message/text()").InnerText = scheduleMessage;
+
+            XmlNode bannedWordsNode = settingsDoc.SelectSingleNode("Settings/Banned_Words");
+            bannedWordsNode.RemoveAll();
+            foreach(string word in bannedWordsList)
             {
-                firstStartUp = false;
+                XmlNode wordNode = settingsDoc.CreateElement("Word");
+                wordNode.InnerText = word;
+                bannedWordsNode.AppendChild(wordNode);
             }
 
-            //save user settings
-            Properties.Settings.Default.channelName = channelNameBox.Text;
-            Properties.Settings.Default.bannedWords = bannedWordsList;
-            Properties.Settings.Default.whoMessage = whoMessageBox.Text;
-            Properties.Settings.Default.scheduleMessage = scheduleMessageBox.Text;
-            Properties.Settings.Default.PointSystem = PointSystemCheckBox.Checked;
-            Properties.Settings.Default.PointSystem = PointSystem;
-            Properties.Settings.Default.firstStartUp = firstStartUp;
-            Properties.Settings.Default.viewerList = viewerCheckBox.Checked;
-            Properties.Settings.Default.viewerList = viewerListVisible;
-            Properties.Settings.Default.streamerCommandList = streamerCommandList;
-            Properties.Settings.Default.streamerCommandList = streamerCommandListCheckBox.Checked;
-            Properties.Settings.Default.socialCommandTimer = socialMessageTimer.Enabled;
-            Properties.Settings.Default.socialMessage = socialMessageTextBox.Text;
-            Properties.Settings.Default.numberOfPolls = numberOfPolls;
-            Properties.Settings.Default.numberofGiveaways = numberOfGiveaways;
-            Properties.Settings.Default.numberOfTimesOpened = numberOfTimesOpened;
-
-            //clear command string list, add commands to list, and save list
-            commandListString.Clear();
+            XmlNode commandsNode = settingsDoc.SelectSingleNode("Settings/Commands");
+            commandsNode.RemoveAll();
             foreach(Command comm in commandList)
             {
-                commandListString.Add(comm.Save());
+                XmlNode commandNode = settingsDoc.CreateElement("Command");
+                commandNode.InnerText = comm.Save();
+                commandsNode.AppendChild(commandNode);
             }
-            Properties.Settings.Default.customCommands = commandListString;
 
-            Properties.Settings.Default.Save();
+            settingsDoc.SelectSingleNode("Settings/Social_Message/text()").InnerText = socialMessage;
+            settingsDoc.SelectSingleNode("Settings/Number_of_Polls/text()").InnerText = numberOfPolls.ToString();
+            settingsDoc.SelectSingleNode("Settings/Number_of_Giveaways/text()").InnerText = numberOfGiveaways.ToString();
+            settingsDoc.SelectSingleNode("Settings/Number_of_Times_Opened/text()").InnerText = numberOfTimesOpened.ToString();
+            settingsDoc.SelectSingleNode("Settings/Point_System/text()").InnerText = PointSystem.ToString().ToLower();
+            settingsDoc.SelectSingleNode("Settings/Viewer_List_Visible/text()").InnerText = viewerListVisible.ToString().ToLower();
+            settingsDoc.SelectSingleNode("Settings/Streamer_Command_List/text()").InnerText = streamerCommandList.ToString().ToLower();
+            settingsDoc.SelectSingleNode("Settings/Social_Message_Timer/text()").InnerText = socialCommandTimer.ToString().ToLower();
+
+            XmlNode quotesNode = settingsDoc.SelectSingleNode("Settings/Quotes");
+            quotesNode.RemoveAll();
+            foreach(KeyValuePair<int, string> quote in quotesDict)
+            {
+                XmlNode quoteNode = settingsDoc.CreateElement("Quote");
+                XmlAttribute attribute = settingsDoc.CreateAttribute("Number");
+                attribute.Value = quote.Key.ToString();
+                quoteNode.Attributes.Append(attribute);
+                quoteNode.InnerText = quote.Value;
+                quotesNode.AppendChild(quoteNode);
+            }
+
+            settingsDoc.Save(@"D:\\GitHub\\AVIATIONBot\\settings.xml");
+            #endregion
 
             //leave channel and close client
             irc.leaveRoom();
@@ -1955,19 +2041,19 @@ namespace TwitchBot
         {
             if (m_permLevel == PermissionLevel.STREAMER)
             {
-                return "streamer";
+                return "STREAMER";
             }
             else if (m_permLevel == PermissionLevel.MOD)
             {
-                return "mods";
+                return "MOD";
             }
             else if(m_permLevel == PermissionLevel.VIEWER)
             {
-                return "viewers";
+                return "VIEWER";
             }
             else
             {
-                return "viewers";
+                return "VIEWER";
             }
 
             //return permLevel;

@@ -130,7 +130,6 @@
             this.Crashes = new System.Windows.Forms.Label();
             this.Feedback = new System.Windows.Forms.Label();
             this.socialMessageTimer = new System.Windows.Forms.Timer(this.components);
-            this.tabPolls = new System.Windows.Forms.TabPage();
             this.tabSettings.SuspendLayout();
             this.tabChat.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -142,18 +141,20 @@
             // 
             // BotChatBox
             // 
-            this.BotChatBox.Location = new System.Drawing.Point(3, 262);
+            this.BotChatBox.Location = new System.Drawing.Point(4, 322);
+            this.BotChatBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BotChatBox.Name = "BotChatBox";
-            this.BotChatBox.Size = new System.Drawing.Size(350, 37);
+            this.BotChatBox.Size = new System.Drawing.Size(465, 45);
             this.BotChatBox.TabIndex = 1;
             this.BotChatBox.Text = "";
             this.BotChatBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BotChatBox_KeyPress);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(359, 262);
+            this.button1.Location = new System.Drawing.Point(479, 322);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 37);
+            this.button1.Size = new System.Drawing.Size(79, 46);
             this.button1.TabIndex = 2;
             this.button1.Text = "Send";
             this.button1.UseVisualStyleBackColor = true;
@@ -167,9 +168,11 @@
             // ViewerBox
             // 
             this.ViewerBox.FormattingEnabled = true;
-            this.ViewerBox.Location = new System.Drawing.Point(427, 26);
+            this.ViewerBox.ItemHeight = 16;
+            this.ViewerBox.Location = new System.Drawing.Point(569, 32);
+            this.ViewerBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ViewerBox.Name = "ViewerBox";
-            this.ViewerBox.Size = new System.Drawing.Size(151, 264);
+            this.ViewerBox.Size = new System.Drawing.Size(200, 324);
             this.ViewerBox.TabIndex = 3;
             this.ViewerBox.SelectedIndexChanged += new System.EventHandler(this.ViewerBox_SelectedIndexChanged);
             // 
@@ -177,9 +180,10 @@
             // 
             this.viewerListLabel.AutoSize = true;
             this.viewerListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewerListLabel.Location = new System.Drawing.Point(424, 7);
+            this.viewerListLabel.Location = new System.Drawing.Point(565, 9);
+            this.viewerListLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.viewerListLabel.Name = "viewerListLabel";
-            this.viewerListLabel.Size = new System.Drawing.Size(63, 16);
+            this.viewerListLabel.Size = new System.Drawing.Size(76, 20);
             this.viewerListLabel.TabIndex = 4;
             this.viewerListLabel.Text = "Viewers";
             // 
@@ -219,19 +223,21 @@
             this.tabSettings.Controls.Add(this.bannedWordsBox);
             this.tabSettings.Controls.Add(this.channelNameBox);
             this.tabSettings.Controls.Add(this.label2);
-            this.tabSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabSettings.Location = new System.Drawing.Point(4, 25);
+            this.tabSettings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabSettings.Name = "tabSettings";
-            this.tabSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSettings.Size = new System.Drawing.Size(726, 302);
+            this.tabSettings.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabSettings.Size = new System.Drawing.Size(971, 375);
             this.tabSettings.TabIndex = 1;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
             // 
             // socialMessageUpdateButton
             // 
-            this.socialMessageUpdateButton.Location = new System.Drawing.Point(148, 192);
+            this.socialMessageUpdateButton.Location = new System.Drawing.Point(197, 236);
+            this.socialMessageUpdateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.socialMessageUpdateButton.Name = "socialMessageUpdateButton";
-            this.socialMessageUpdateButton.Size = new System.Drawing.Size(53, 23);
+            this.socialMessageUpdateButton.Size = new System.Drawing.Size(71, 28);
             this.socialMessageUpdateButton.TabIndex = 23;
             this.socialMessageUpdateButton.Text = "Update";
             this.socialMessageUpdateButton.UseVisualStyleBackColor = true;
@@ -239,9 +245,10 @@
             // 
             // scheduleMessageUpdateButton
             // 
-            this.scheduleMessageUpdateButton.Location = new System.Drawing.Point(148, 127);
+            this.scheduleMessageUpdateButton.Location = new System.Drawing.Point(197, 156);
+            this.scheduleMessageUpdateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.scheduleMessageUpdateButton.Name = "scheduleMessageUpdateButton";
-            this.scheduleMessageUpdateButton.Size = new System.Drawing.Size(53, 23);
+            this.scheduleMessageUpdateButton.Size = new System.Drawing.Size(71, 28);
             this.scheduleMessageUpdateButton.TabIndex = 22;
             this.scheduleMessageUpdateButton.Text = "Update";
             this.scheduleMessageUpdateButton.UseVisualStyleBackColor = true;
@@ -250,9 +257,10 @@
             // whoMessageUpdateButton
             // 
             this.whoMessageUpdateButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.whoMessageUpdateButton.Location = new System.Drawing.Point(148, 58);
+            this.whoMessageUpdateButton.Location = new System.Drawing.Point(197, 71);
+            this.whoMessageUpdateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.whoMessageUpdateButton.Name = "whoMessageUpdateButton";
-            this.whoMessageUpdateButton.Size = new System.Drawing.Size(53, 23);
+            this.whoMessageUpdateButton.Size = new System.Drawing.Size(71, 28);
             this.whoMessageUpdateButton.TabIndex = 21;
             this.whoMessageUpdateButton.Text = "Update";
             this.whoMessageUpdateButton.UseVisualStyleBackColor = true;
@@ -260,9 +268,10 @@
             // 
             // channelNameUpdateButton
             // 
-            this.channelNameUpdateButton.Location = new System.Drawing.Point(148, 18);
+            this.channelNameUpdateButton.Location = new System.Drawing.Point(197, 22);
+            this.channelNameUpdateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.channelNameUpdateButton.Name = "channelNameUpdateButton";
-            this.channelNameUpdateButton.Size = new System.Drawing.Size(53, 22);
+            this.channelNameUpdateButton.Size = new System.Drawing.Size(71, 27);
             this.channelNameUpdateButton.TabIndex = 20;
             this.channelNameUpdateButton.Text = "Update";
             this.channelNameUpdateButton.UseVisualStyleBackColor = true;
@@ -270,9 +279,10 @@
             // 
             // rejoinChannelButton
             // 
-            this.rejoinChannelButton.Location = new System.Drawing.Point(11, 273);
+            this.rejoinChannelButton.Location = new System.Drawing.Point(15, 336);
+            this.rejoinChannelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rejoinChannelButton.Name = "rejoinChannelButton";
-            this.rejoinChannelButton.Size = new System.Drawing.Size(75, 23);
+            this.rejoinChannelButton.Size = new System.Drawing.Size(100, 28);
             this.rejoinChannelButton.TabIndex = 19;
             this.rejoinChannelButton.Text = "Rejoin Channel";
             this.rejoinChannelButton.UseVisualStyleBackColor = true;
@@ -280,9 +290,10 @@
             // 
             // joinChannelButton
             // 
-            this.joinChannelButton.Location = new System.Drawing.Point(11, 247);
+            this.joinChannelButton.Location = new System.Drawing.Point(15, 304);
+            this.joinChannelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.joinChannelButton.Name = "joinChannelButton";
-            this.joinChannelButton.Size = new System.Drawing.Size(75, 23);
+            this.joinChannelButton.Size = new System.Drawing.Size(100, 28);
             this.joinChannelButton.TabIndex = 18;
             this.joinChannelButton.Text = "Join Channel";
             this.joinChannelButton.UseVisualStyleBackColor = true;
@@ -292,17 +303,19 @@
             // 
             this.socialMessageLabel.AutoSize = true;
             this.socialMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.socialMessageLabel.Location = new System.Drawing.Point(8, 176);
+            this.socialMessageLabel.Location = new System.Drawing.Point(11, 217);
+            this.socialMessageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.socialMessageLabel.Name = "socialMessageLabel";
-            this.socialMessageLabel.Size = new System.Drawing.Size(98, 13);
+            this.socialMessageLabel.Size = new System.Drawing.Size(123, 17);
             this.socialMessageLabel.TabIndex = 17;
             this.socialMessageLabel.Text = "!social Message";
             // 
             // socialMessageTextBox
             // 
-            this.socialMessageTextBox.Location = new System.Drawing.Point(11, 192);
+            this.socialMessageTextBox.Location = new System.Drawing.Point(15, 236);
+            this.socialMessageTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.socialMessageTextBox.Name = "socialMessageTextBox";
-            this.socialMessageTextBox.Size = new System.Drawing.Size(133, 49);
+            this.socialMessageTextBox.Size = new System.Drawing.Size(176, 59);
             this.socialMessageTextBox.TabIndex = 16;
             this.socialMessageTextBox.Text = "";
             this.socialMessageTextBox.MouseEnter += new System.EventHandler(this.socialMessageTextBox_MouseEnter);
@@ -314,9 +327,10 @@
             this.socialCommandCheckBox.Checked = true;
             this.socialCommandCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.socialCommandCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.socialCommandCheckBox.Location = new System.Drawing.Point(216, 219);
+            this.socialCommandCheckBox.Location = new System.Drawing.Point(288, 270);
+            this.socialCommandCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.socialCommandCheckBox.Name = "socialCommandCheckBox";
-            this.socialCommandCheckBox.Size = new System.Drawing.Size(156, 17);
+            this.socialCommandCheckBox.Size = new System.Drawing.Size(197, 21);
             this.socialCommandCheckBox.TabIndex = 15;
             this.socialCommandCheckBox.Text = "!social Command Timer";
             this.socialCommandCheckBox.UseVisualStyleBackColor = true;
@@ -330,9 +344,10 @@
             this.streamerCommandListCheckBox.Checked = true;
             this.streamerCommandListCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.streamerCommandListCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.streamerCommandListCheckBox.Location = new System.Drawing.Point(216, 242);
+            this.streamerCommandListCheckBox.Location = new System.Drawing.Point(288, 298);
+            this.streamerCommandListCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.streamerCommandListCheckBox.Name = "streamerCommandListCheckBox";
-            this.streamerCommandListCheckBox.Size = new System.Drawing.Size(158, 17);
+            this.streamerCommandListCheckBox.Size = new System.Drawing.Size(202, 21);
             this.streamerCommandListCheckBox.TabIndex = 14;
             this.streamerCommandListCheckBox.Text = "Streamer Command List";
             this.streamerCommandListCheckBox.UseVisualStyleBackColor = true;
@@ -342,9 +357,10 @@
             // 
             // addBannedWord
             // 
-            this.addBannedWord.Location = new System.Drawing.Point(331, 16);
+            this.addBannedWord.Location = new System.Drawing.Point(441, 20);
+            this.addBannedWord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addBannedWord.Name = "addBannedWord";
-            this.addBannedWord.Size = new System.Drawing.Size(65, 23);
+            this.addBannedWord.Size = new System.Drawing.Size(87, 28);
             this.addBannedWord.TabIndex = 13;
             this.addBannedWord.Text = "Add Word";
             this.addBannedWord.UseVisualStyleBackColor = true;
@@ -352,11 +368,12 @@
             // 
             // settingsDescBox
             // 
-            this.settingsDescBox.Location = new System.Drawing.Point(432, -1);
+            this.settingsDescBox.Location = new System.Drawing.Point(576, -1);
+            this.settingsDescBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.settingsDescBox.Multiline = true;
             this.settingsDescBox.Name = "settingsDescBox";
             this.settingsDescBox.ReadOnly = true;
-            this.settingsDescBox.Size = new System.Drawing.Size(294, 303);
+            this.settingsDescBox.Size = new System.Drawing.Size(391, 372);
             this.settingsDescBox.TabIndex = 12;
             // 
             // viewerCheckBox
@@ -365,9 +382,10 @@
             this.viewerCheckBox.Checked = true;
             this.viewerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.viewerCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewerCheckBox.Location = new System.Drawing.Point(216, 196);
+            this.viewerCheckBox.Location = new System.Drawing.Point(288, 241);
+            this.viewerCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.viewerCheckBox.Name = "viewerCheckBox";
-            this.viewerCheckBox.Size = new System.Drawing.Size(88, 17);
+            this.viewerCheckBox.Size = new System.Drawing.Size(109, 21);
             this.viewerCheckBox.TabIndex = 11;
             this.viewerCheckBox.Text = "Viewer List";
             this.viewerCheckBox.UseVisualStyleBackColor = true;
@@ -377,9 +395,10 @@
             // 
             // unbanWordButton
             // 
-            this.unbanWordButton.Location = new System.Drawing.Point(331, 42);
+            this.unbanWordButton.Location = new System.Drawing.Point(441, 52);
+            this.unbanWordButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.unbanWordButton.Name = "unbanWordButton";
-            this.unbanWordButton.Size = new System.Drawing.Size(85, 23);
+            this.unbanWordButton.Size = new System.Drawing.Size(113, 28);
             this.unbanWordButton.TabIndex = 10;
             this.unbanWordButton.Text = "Remove Word";
             this.unbanWordButton.UseVisualStyleBackColor = true;
@@ -388,9 +407,11 @@
             // bannedWordsListBox
             // 
             this.bannedWordsListBox.FormattingEnabled = true;
-            this.bannedWordsListBox.Location = new System.Drawing.Point(216, 42);
+            this.bannedWordsListBox.ItemHeight = 16;
+            this.bannedWordsListBox.Location = new System.Drawing.Point(288, 52);
+            this.bannedWordsListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.bannedWordsListBox.Name = "bannedWordsListBox";
-            this.bannedWordsListBox.Size = new System.Drawing.Size(111, 121);
+            this.bannedWordsListBox.Size = new System.Drawing.Size(147, 148);
             this.bannedWordsListBox.TabIndex = 9;
             this.bannedWordsListBox.MouseEnter += new System.EventHandler(this.bannedWordsListBox_MouseEnter);
             this.bannedWordsListBox.MouseLeave += new System.EventHandler(this.bannedWordsListBox_MouseLeave);
@@ -401,9 +422,10 @@
             this.PointSystemCheckBox.Checked = true;
             this.PointSystemCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.PointSystemCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PointSystemCheckBox.Location = new System.Drawing.Point(216, 173);
+            this.PointSystemCheckBox.Location = new System.Drawing.Point(288, 213);
+            this.PointSystemCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PointSystemCheckBox.Name = "PointSystemCheckBox";
-            this.PointSystemCheckBox.Size = new System.Drawing.Size(99, 17);
+            this.PointSystemCheckBox.Size = new System.Drawing.Size(124, 21);
             this.PointSystemCheckBox.TabIndex = 8;
             this.PointSystemCheckBox.Text = "Point System";
             this.PointSystemCheckBox.UseVisualStyleBackColor = true;
@@ -413,9 +435,10 @@
             // 
             // scheduleMessageBox
             // 
-            this.scheduleMessageBox.Location = new System.Drawing.Point(11, 127);
+            this.scheduleMessageBox.Location = new System.Drawing.Point(15, 156);
+            this.scheduleMessageBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.scheduleMessageBox.Name = "scheduleMessageBox";
-            this.scheduleMessageBox.Size = new System.Drawing.Size(133, 46);
+            this.scheduleMessageBox.Size = new System.Drawing.Size(176, 56);
             this.scheduleMessageBox.TabIndex = 7;
             this.scheduleMessageBox.Text = "";
             this.scheduleMessageBox.MouseEnter += new System.EventHandler(this.scheduleMessageBox_MouseEnter);
@@ -425,18 +448,20 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(8, 111);
+            this.label5.Location = new System.Drawing.Point(11, 137);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 13);
+            this.label5.Size = new System.Drawing.Size(146, 17);
             this.label5.TabIndex = 6;
             this.label5.Text = "!schedule Message";
             // 
             // whoMessageBox
             // 
             this.whoMessageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.whoMessageBox.Location = new System.Drawing.Point(11, 58);
+            this.whoMessageBox.Location = new System.Drawing.Point(15, 71);
+            this.whoMessageBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.whoMessageBox.Name = "whoMessageBox";
-            this.whoMessageBox.Size = new System.Drawing.Size(133, 50);
+            this.whoMessageBox.Size = new System.Drawing.Size(176, 61);
             this.whoMessageBox.TabIndex = 5;
             this.whoMessageBox.Text = "";
             this.whoMessageBox.MouseEnter += new System.EventHandler(this.whoMessageBox_MouseEnter);
@@ -446,9 +471,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(8, 42);
+            this.label4.Location = new System.Drawing.Point(11, 52);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 13);
+            this.label4.Size = new System.Drawing.Size(109, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "!who Message";
             // 
@@ -456,17 +482,19 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(213, 3);
+            this.label3.Location = new System.Drawing.Point(284, 4);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 13);
+            this.label3.Size = new System.Drawing.Size(114, 17);
             this.label3.TabIndex = 3;
             this.label3.Text = "Banned Words";
             // 
             // bannedWordsBox
             // 
-            this.bannedWordsBox.Location = new System.Drawing.Point(216, 19);
+            this.bannedWordsBox.Location = new System.Drawing.Point(288, 23);
+            this.bannedWordsBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.bannedWordsBox.Name = "bannedWordsBox";
-            this.bannedWordsBox.Size = new System.Drawing.Size(111, 20);
+            this.bannedWordsBox.Size = new System.Drawing.Size(147, 24);
             this.bannedWordsBox.TabIndex = 2;
             this.bannedWordsBox.Text = "";
             this.bannedWordsBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.bannedWordsBox_KeyUp);
@@ -475,9 +503,10 @@
             // 
             // channelNameBox
             // 
-            this.channelNameBox.Location = new System.Drawing.Point(11, 19);
+            this.channelNameBox.Location = new System.Drawing.Point(15, 23);
+            this.channelNameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.channelNameBox.Name = "channelNameBox";
-            this.channelNameBox.Size = new System.Drawing.Size(133, 20);
+            this.channelNameBox.Size = new System.Drawing.Size(176, 22);
             this.channelNameBox.TabIndex = 1;
             this.channelNameBox.Text = "theaviationbot";
             this.channelNameBox.MouseEnter += new System.EventHandler(this.channelNameBox_MouseEnter);
@@ -487,9 +516,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 3);
+            this.label2.Location = new System.Drawing.Point(11, 4);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(67, 17);
             this.label2.TabIndex = 0;
             this.label2.Text = "Channel";
             // 
@@ -503,10 +533,11 @@
             this.tabChat.Controls.Add(this.ViewerBox);
             this.tabChat.Controls.Add(this.viewerListLabel);
             this.tabChat.Controls.Add(this.BotChatBox);
-            this.tabChat.Location = new System.Drawing.Point(4, 22);
+            this.tabChat.Location = new System.Drawing.Point(4, 25);
+            this.tabChat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabChat.Name = "tabChat";
-            this.tabChat.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChat.Size = new System.Drawing.Size(726, 302);
+            this.tabChat.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabChat.Size = new System.Drawing.Size(971, 375);
             this.tabChat.TabIndex = 0;
             this.tabChat.Text = "Chat";
             // 
@@ -514,29 +545,32 @@
             // 
             this.viewerPointsLabel.AutoSize = true;
             this.viewerPointsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewerPointsLabel.Location = new System.Drawing.Point(585, 7);
+            this.viewerPointsLabel.Location = new System.Drawing.Point(780, 9);
+            this.viewerPointsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.viewerPointsLabel.Name = "viewerPointsLabel";
-            this.viewerPointsLabel.Size = new System.Drawing.Size(102, 16);
+            this.viewerPointsLabel.Size = new System.Drawing.Size(125, 20);
             this.viewerPointsLabel.TabIndex = 6;
             this.viewerPointsLabel.Text = "Viewer Points";
             // 
             // viewerPointsBox
             // 
             this.viewerPointsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.viewerPointsBox.Location = new System.Drawing.Point(588, 26);
+            this.viewerPointsBox.Location = new System.Drawing.Point(784, 32);
+            this.viewerPointsBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.viewerPointsBox.Multiline = true;
             this.viewerPointsBox.Name = "viewerPointsBox";
             this.viewerPointsBox.ReadOnly = true;
-            this.viewerPointsBox.Size = new System.Drawing.Size(130, 98);
+            this.viewerPointsBox.Size = new System.Drawing.Size(173, 121);
             this.viewerPointsBox.TabIndex = 5;
             // 
             // chatBox
             // 
             this.chatBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chatBox.Location = new System.Drawing.Point(6, 6);
+            this.chatBox.Location = new System.Drawing.Point(8, 7);
+            this.chatBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chatBox.Name = "chatBox";
             this.chatBox.ReadOnly = true;
-            this.chatBox.Size = new System.Drawing.Size(412, 250);
+            this.chatBox.Size = new System.Drawing.Size(548, 307);
             this.chatBox.TabIndex = 0;
             this.chatBox.Text = "";
             this.chatBox.TextChanged += new System.EventHandler(this.chatBox_TextChanged);
@@ -547,21 +581,22 @@
             this.tabControl1.Controls.Add(this.tabChat);
             this.tabControl1.Controls.Add(this.tabCommands);
             this.tabControl1.Controls.Add(this.tabQuote);
-            this.tabControl1.Controls.Add(this.tabPolls);
             this.tabControl1.Controls.Add(this.tabSettings);
             this.tabControl1.Controls.Add(this.tabSupport);
             this.tabControl1.Location = new System.Drawing.Point(0, 1);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(734, 328);
+            this.tabControl1.Size = new System.Drawing.Size(979, 404);
             this.tabControl1.TabIndex = 5;
             // 
             // tabWelcome
             // 
             this.tabWelcome.Controls.Add(this.welcomeTextBox);
-            this.tabWelcome.Location = new System.Drawing.Point(4, 22);
+            this.tabWelcome.Location = new System.Drawing.Point(4, 25);
+            this.tabWelcome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabWelcome.Name = "tabWelcome";
-            this.tabWelcome.Size = new System.Drawing.Size(726, 302);
+            this.tabWelcome.Size = new System.Drawing.Size(971, 375);
             this.tabWelcome.TabIndex = 5;
             this.tabWelcome.Text = "Welcome";
             this.tabWelcome.UseVisualStyleBackColor = true;
@@ -570,10 +605,11 @@
             // 
             this.welcomeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.welcomeTextBox.Location = new System.Drawing.Point(0, 0);
+            this.welcomeTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.welcomeTextBox.Multiline = true;
             this.welcomeTextBox.Name = "welcomeTextBox";
             this.welcomeTextBox.ReadOnly = true;
-            this.welcomeTextBox.Size = new System.Drawing.Size(726, 302);
+            this.welcomeTextBox.Size = new System.Drawing.Size(968, 372);
             this.welcomeTextBox.TabIndex = 0;
             this.welcomeTextBox.Text = resources.GetString("welcomeTextBox.Text");
             // 
@@ -581,16 +617,18 @@
             // 
             this.tabCommands.Controls.Add(this.CommandsTreeView);
             this.tabCommands.Controls.Add(this.CommandsTextBox);
-            this.tabCommands.Location = new System.Drawing.Point(4, 22);
+            this.tabCommands.Location = new System.Drawing.Point(4, 25);
+            this.tabCommands.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabCommands.Name = "tabCommands";
-            this.tabCommands.Size = new System.Drawing.Size(726, 302);
+            this.tabCommands.Size = new System.Drawing.Size(971, 375);
             this.tabCommands.TabIndex = 3;
             this.tabCommands.Text = "Commands";
             this.tabCommands.UseVisualStyleBackColor = true;
             // 
             // CommandsTreeView
             // 
-            this.CommandsTreeView.Location = new System.Drawing.Point(3, 4);
+            this.CommandsTreeView.Location = new System.Drawing.Point(4, 5);
+            this.CommandsTreeView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CommandsTreeView.Name = "CommandsTreeView";
             treeNode1.Name = "!who";
             treeNode1.Text = "!who";
@@ -643,16 +681,17 @@
             this.CommandsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode17,
             treeNode24});
-            this.CommandsTreeView.Size = new System.Drawing.Size(353, 288);
+            this.CommandsTreeView.Size = new System.Drawing.Size(469, 354);
             this.CommandsTreeView.TabIndex = 2;
             this.CommandsTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.CommandsTreeView_NodeMouseClick);
             // 
             // CommandsTextBox
             // 
-            this.CommandsTextBox.Location = new System.Drawing.Point(362, 4);
+            this.CommandsTextBox.Location = new System.Drawing.Point(483, 5);
+            this.CommandsTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CommandsTextBox.Name = "CommandsTextBox";
             this.CommandsTextBox.ReadOnly = true;
-            this.CommandsTextBox.Size = new System.Drawing.Size(356, 288);
+            this.CommandsTextBox.Size = new System.Drawing.Size(473, 354);
             this.CommandsTextBox.TabIndex = 1;
             this.CommandsTextBox.Text = "A brief description of the selected command will be displayed here.";
             // 
@@ -661,9 +700,10 @@
             this.tabQuote.Controls.Add(this.quoteListBox);
             this.tabQuote.Controls.Add(this.quoteAddButton);
             this.tabQuote.Controls.Add(this.quoteAddBox);
-            this.tabQuote.Location = new System.Drawing.Point(4, 22);
+            this.tabQuote.Location = new System.Drawing.Point(4, 25);
+            this.tabQuote.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabQuote.Name = "tabQuote";
-            this.tabQuote.Size = new System.Drawing.Size(726, 302);
+            this.tabQuote.Size = new System.Drawing.Size(971, 375);
             this.tabQuote.TabIndex = 6;
             this.tabQuote.Text = "Quotes";
             this.tabQuote.UseVisualStyleBackColor = true;
@@ -671,16 +711,19 @@
             // quoteListBox
             // 
             this.quoteListBox.FormattingEnabled = true;
+            this.quoteListBox.ItemHeight = 16;
             this.quoteListBox.Location = new System.Drawing.Point(0, 0);
+            this.quoteListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.quoteListBox.Name = "quoteListBox";
-            this.quoteListBox.Size = new System.Drawing.Size(726, 277);
+            this.quoteListBox.Size = new System.Drawing.Size(967, 340);
             this.quoteListBox.TabIndex = 4;
             // 
             // quoteAddButton
             // 
-            this.quoteAddButton.Location = new System.Drawing.Point(8, 279);
+            this.quoteAddButton.Location = new System.Drawing.Point(11, 343);
+            this.quoteAddButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.quoteAddButton.Name = "quoteAddButton";
-            this.quoteAddButton.Size = new System.Drawing.Size(96, 21);
+            this.quoteAddButton.Size = new System.Drawing.Size(128, 26);
             this.quoteAddButton.TabIndex = 2;
             this.quoteAddButton.Text = "Add Quote";
             this.quoteAddButton.UseVisualStyleBackColor = true;
@@ -688,9 +731,10 @@
             // 
             // quoteAddBox
             // 
-            this.quoteAddBox.Location = new System.Drawing.Point(110, 279);
+            this.quoteAddBox.Location = new System.Drawing.Point(147, 343);
+            this.quoteAddBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.quoteAddBox.Name = "quoteAddBox";
-            this.quoteAddBox.Size = new System.Drawing.Size(613, 20);
+            this.quoteAddBox.Size = new System.Drawing.Size(816, 22);
             this.quoteAddBox.TabIndex = 1;
             // 
             // tabSupport
@@ -701,9 +745,10 @@
             this.tabSupport.Controls.Add(this.crashesTextBox);
             this.tabSupport.Controls.Add(this.Crashes);
             this.tabSupport.Controls.Add(this.Feedback);
-            this.tabSupport.Location = new System.Drawing.Point(4, 22);
+            this.tabSupport.Location = new System.Drawing.Point(4, 25);
+            this.tabSupport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabSupport.Name = "tabSupport";
-            this.tabSupport.Size = new System.Drawing.Size(726, 302);
+            this.tabSupport.Size = new System.Drawing.Size(971, 375);
             this.tabSupport.TabIndex = 4;
             this.tabSupport.Text = "Support";
             this.tabSupport.UseVisualStyleBackColor = true;
@@ -711,11 +756,12 @@
             // TOStextbox
             // 
             this.TOStextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TOStextbox.Location = new System.Drawing.Point(370, 193);
+            this.TOStextbox.Location = new System.Drawing.Point(493, 238);
+            this.TOStextbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TOStextbox.Multiline = true;
             this.TOStextbox.Name = "TOStextbox";
             this.TOStextbox.ReadOnly = true;
-            this.TOStextbox.Size = new System.Drawing.Size(348, 95);
+            this.TOStextbox.Size = new System.Drawing.Size(464, 117);
             this.TOStextbox.TabIndex = 6;
             this.TOStextbox.Text = resources.GetString("TOStextbox.Text");
             this.TOStextbox.Visible = false;
@@ -724,9 +770,10 @@
             // 
             this.TOSlabel.AutoSize = true;
             this.TOSlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TOSlabel.Location = new System.Drawing.Point(482, 174);
+            this.TOSlabel.Location = new System.Drawing.Point(643, 214);
+            this.TOSlabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TOSlabel.Name = "TOSlabel";
-            this.TOSlabel.Size = new System.Drawing.Size(126, 16);
+            this.TOSlabel.Size = new System.Drawing.Size(153, 20);
             this.TOSlabel.TabIndex = 5;
             this.TOSlabel.Text = "Terms of Service";
             this.TOSlabel.Visible = false;
@@ -734,10 +781,11 @@
             // feedbackBox
             // 
             this.feedbackBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.feedbackBox.Location = new System.Drawing.Point(370, 20);
+            this.feedbackBox.Location = new System.Drawing.Point(493, 25);
+            this.feedbackBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.feedbackBox.Name = "feedbackBox";
             this.feedbackBox.ReadOnly = true;
-            this.feedbackBox.Size = new System.Drawing.Size(348, 149);
+            this.feedbackBox.Size = new System.Drawing.Size(464, 183);
             this.feedbackBox.TabIndex = 4;
             this.feedbackBox.Text = "Do you have an amazing idea for the bot or want to help us refine how the bot wor" +
     "ks?\n\nPlease send an email to aviationbot@gmail.com. We would love to here from y" +
@@ -746,10 +794,11 @@
             // crashesTextBox
             // 
             this.crashesTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.crashesTextBox.Location = new System.Drawing.Point(6, 20);
+            this.crashesTextBox.Location = new System.Drawing.Point(8, 25);
+            this.crashesTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crashesTextBox.Name = "crashesTextBox";
             this.crashesTextBox.ReadOnly = true;
-            this.crashesTextBox.Size = new System.Drawing.Size(345, 268);
+            this.crashesTextBox.Size = new System.Drawing.Size(460, 330);
             this.crashesTextBox.TabIndex = 3;
             this.crashesTextBox.Text = resources.GetString("crashesTextBox.Text");
             // 
@@ -757,9 +806,10 @@
             // 
             this.Crashes.AutoSize = true;
             this.Crashes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Crashes.Location = new System.Drawing.Point(104, 1);
+            this.Crashes.Location = new System.Drawing.Point(139, 1);
+            this.Crashes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Crashes.Name = "Crashes";
-            this.Crashes.Size = new System.Drawing.Size(140, 16);
+            this.Crashes.Size = new System.Drawing.Size(173, 20);
             this.Crashes.TabIndex = 2;
             this.Crashes.Text = "Crashes or Issues?";
             // 
@@ -767,9 +817,10 @@
             // 
             this.Feedback.AutoSize = true;
             this.Feedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Feedback.Location = new System.Drawing.Point(423, 1);
+            this.Feedback.Location = new System.Drawing.Point(564, 1);
+            this.Feedback.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Feedback.Name = "Feedback";
-            this.Feedback.Size = new System.Drawing.Size(237, 16);
+            this.Feedback.Size = new System.Drawing.Size(282, 20);
             this.Feedback.TabIndex = 1;
             this.Feedback.Text = "Feedback or Recommendations?";
             // 
@@ -778,21 +829,13 @@
             this.socialMessageTimer.Interval = 600000;
             this.socialMessageTimer.Tick += new System.EventHandler(this.socialMessageTimer_Tick);
             // 
-            // tabPolls
-            // 
-            this.tabPolls.Location = new System.Drawing.Point(4, 22);
-            this.tabPolls.Name = "tabPolls";
-            this.tabPolls.Size = new System.Drawing.Size(726, 302);
-            this.tabPolls.TabIndex = 7;
-            this.tabPolls.Text = "Polls";
-            this.tabPolls.UseVisualStyleBackColor = true;
-            // 
             // TheAVIATIONBot
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 327);
+            this.ClientSize = new System.Drawing.Size(979, 402);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TheAVIATIONBot";
             this.Text = "TheAVIATIONBot";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -868,7 +911,6 @@
         private System.Windows.Forms.ListBox quoteListBox;
         private System.Windows.Forms.Button quoteAddButton;
         private System.Windows.Forms.TextBox quoteAddBox;
-        private System.Windows.Forms.TabPage tabPolls;
     }
 }
 

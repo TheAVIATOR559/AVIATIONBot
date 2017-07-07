@@ -45,6 +45,7 @@ namespace TwitchBot
         public static int numberOfBannedWords;
         public static int numberOfTimesOpened;
         public static Dictionary<int, string> quotesDict = new Dictionary<int, string>();
+        public static string streamStartTime = "";
 
         TwitchReadOnlyClient APIClient = new TwitchReadOnlyClient(TwitchClientID);
         TwitchROChat chatClient = new TwitchROChat(TwitchClientID);
@@ -78,7 +79,7 @@ namespace TwitchBot
             XmlDocument settings = new XmlDocument();
             try
             {
-                settings.Load(@"D:\\GitHub\\AVIATIONBot\\settings.xml");
+                settings.Load(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\") + "settings.xml");
                 channelNameBox.Text = settings.SelectSingleNode("Settings/Channel_Name/text()").InnerText.Trim();
                 channelName = settings.SelectSingleNode("Settings/Channel_Name/text()").InnerText.Trim();
                 whoMessageBox.Text = settings.SelectSingleNode("Settings/Who_Message/text()").InnerText.Trim();
@@ -175,7 +176,7 @@ namespace TwitchBot
                 XmlNode quotesNode = settings.CreateElement("Quotes");
                 rootNode.AppendChild(quotesNode);
 
-                settings.Save(@"D:\\GitHub\\AVIATIONBot\\settings.xml");
+                settings.Save(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\") + "settings.xml");
             }
             #endregion
 
@@ -213,7 +214,7 @@ namespace TwitchBot
 
             #region Saving user Settings via XML
             XmlDocument settingsDoc = new XmlDocument();
-            settingsDoc.Load(@"D:\\GitHub\\AVIATIONBot\\settings.xml");
+            settingsDoc.Load(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\") + "settings.xml");
 
             settingsDoc.SelectSingleNode("Settings/Channel_Name/text()").InnerText = channelName;
             settingsDoc.SelectSingleNode("Settings/Who_Message/text()").InnerText = whoMessage;
@@ -258,7 +259,7 @@ namespace TwitchBot
                 quotesNode.AppendChild(quoteNode);
             }
 
-            settingsDoc.Save(@"D:\\GitHub\\AVIATIONBot\\settings.xml");
+            settingsDoc.Save(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\") + "settings.xml");
             #endregion
 
             //leave channel and close client
@@ -298,12 +299,25 @@ namespace TwitchBot
             }
             else
             {
-                //chatBox.Text = chatBox.Text + readData.ToString() + Environment.NewLine;  //shows everything that happens in chat
+                chatBox.Text = chatBox.Text + readData.ToString() + Environment.NewLine;  //shows everything that happens in chat
 
                 //separators to segment message into useful parts
                 string[] separator = new string[] { "#" + channelNameBox.Text + " :" };
                 string[] whisperSeparator = new string[] { botName + " :" };
                 string[] singleSep = new string[] { ":", "!" };
+
+                //getting the room id
+                if(readData.Contains("room-id"))
+                {
+                    string[] roomIDSep = new string[] { "room-id=" };
+
+                    string temp = readData.Split(roomIDSep, StringSplitOptions.None)[1];
+                    int semiColonLoc = temp.IndexOf(";");
+                    int stringEndLoc = temp.Length - semiColonLoc;
+                    string roomID = temp.Remove(semiColonLoc, stringEndLoc);
+
+                    irc.getStartTime(roomID);
+                }
 
                 //chat messages
                 if (readData.Contains("PRIVMSG"))
@@ -1931,6 +1945,7 @@ namespace TwitchBot
             outputStream.WriteLine("USER " + userName + " 8 * :" + userName);
             outputStream.WriteLine("CAP REQ :twitch.tv/membership");
             outputStream.WriteLine("CAP REQ :twitch.tv/commands");
+            outputStream.WriteLine("CAP REQ :twitch.tv/tags");
             outputStream.Flush();
         }
 
@@ -1973,6 +1988,19 @@ namespace TwitchBot
             string message = "";
             message = inputStream.ReadLine();
             return message;
+        }
+
+        public string getStartTime(string roomID)
+        {
+            string response = "";
+
+            sendIrcMessage("https://api.twitch.tv/kraken/streams/");
+
+            response = inputStream.ReadLine();
+
+            //read in the start time and find delta from current time
+
+            return response;
         }
 
 

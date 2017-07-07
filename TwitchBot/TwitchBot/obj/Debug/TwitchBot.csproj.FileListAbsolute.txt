@@ -53,3 +53,22 @@ D:\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\RestSharp.xml
 D:\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.csproj.TwitchBot.exe.config
 D:\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.exe.manifest
 D:\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.application
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\TwitchBot.exe.config
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\TwitchBot.exe.manifest
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\TwitchBot.application
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\TwitchBot.exe
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\TwitchBot.pdb
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\RestSharp.dll
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\TwitchCSharp.dll
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\bin\Debug\RestSharp.xml
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.csprojResolveAssemblyReference.cache
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.csproj.TwitchBot.exe.config
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.TheAVIATIONBot.resources
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.Properties.Resources.resources
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.csproj.GenerateResource.Cache
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.exe.manifest
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.application
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.exe
+C:\Users\Jacob Howell\Documents\GitHub\AVIATIONBot\TwitchBot\TwitchBot\obj\Debug\TwitchBot.pdb
